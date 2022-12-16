@@ -35,12 +35,11 @@ public class LogInServlet extends HttpServlet {
         String[] passwords = parameterMap.get(PARAM_NAME_PASSWORD);
         String password = (passwords == null) ? null : passwords[0];
         PrintWriter writer = resp.getWriter();
-        try {
-            service.checkLogin(login, password);
+           if (service.checkLogin(login, password)){
             ActionSession.saveSession(req,PARAM_NAME_LOGIN,login);
-            writer.write("<p> Authorization is successful </p>");
-        } catch (Exception e){
-            writer.write("<p>"+e.getMessage()+"</p>");
-        }
+            writer.write("<p> Authorization is successful </p>");}
+           else {
+               writer.write("<p> Login and password not exist </p>");
+           }
     }
 }
