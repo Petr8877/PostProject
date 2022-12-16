@@ -16,7 +16,8 @@ public class RegisteredUsersDAO implements IRegisteredUsersDAO {
         UserDTO admin = new UserDTO("Admin", "123qwe",
                 "Иванов И.И", LocalDate.of(1990, 12,12));
         RegisteredUsersDTO adminReg = new RegisteredUsersDTO(admin, LocalDate.of(2022,12,12));
-        adminReg.setAdmin(true);
+//   изменила строку 20
+        adminReg.setAdmin();
         this.registeredUsers.put(adminReg.getUser().getLogin(), adminReg);
     }
 
@@ -34,4 +35,6 @@ public class RegisteredUsersDAO implements IRegisteredUsersDAO {
     public RegisteredUsersDTO getUser(String login) {
         return this.registeredUsers.get(login);
     }
+
+
 }

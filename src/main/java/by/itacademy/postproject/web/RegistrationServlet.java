@@ -1,7 +1,9 @@
 package by.itacademy.postproject.web;
 
 import by.itacademy.postproject.dto.UserDTO;
+import by.itacademy.postproject.service.RegistrationService;
 import by.itacademy.postproject.service.api.IRegistrationService;
+import by.itacademy.postproject.service.factory.RegistrationServiceSingleton;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,8 +25,8 @@ public class RegistrationServlet extends HttpServlet {
     private final String FULL_NAME_PARAM_NAME = "fullName";
     private final String BIRTHDATE_PARAM_NAME = "birthdate";
 
-    public RegistrationServlet(IRegistrationService registrationService) {
-        this.registrationService = registrationService;
+    public RegistrationServlet( ) {
+        this.registrationService = RegistrationServiceSingleton.getInstance();
     }
 
     @Override
@@ -43,10 +45,10 @@ public class RegistrationServlet extends HttpServlet {
         String[] fullNames = parameterMap.get(FULL_NAME_PARAM_NAME);
         String[] dates = parameterMap.get(BIRTHDATE_PARAM_NAME);
 
-        String login = logins == null ? null : logins[0];
-        String password = passwords == null ? null : passwords[0];
-        String fullName = fullNames == null ? null : fullNames[0];
-        String date = dates == null ? null : dates[0];
+        String login = (logins == null) ? null : logins[0];
+        String password = (passwords == null) ? null : passwords[0];
+        String fullName = (fullNames == null) ? null : fullNames[0];
+        String date = (dates == null) ? null : dates[0];
 
         try{
             if(logins == null) {
@@ -77,6 +79,16 @@ public class RegistrationServlet extends HttpServlet {
             writer.write("<p>" + "Неверный формат даты" + "</p>");
         }
 
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+
+        PrintWriter writer = resp.getWriter();
+        writer.write("<p>Hello</p>");
     }
 
     public LocalDate parseDate(String date) {

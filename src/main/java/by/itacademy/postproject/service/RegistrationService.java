@@ -57,7 +57,7 @@ public class RegistrationService implements IRegistrationService {
 
         LocalDate birthdate = userDTO.getBirthdate();
 
-        if (birthdate.isAfter(LocalDate.now()) || birthdate.isEqual(LocalDate.now())){
+        if (birthdate.isAfter(LocalDate.now()) || birthdate.isEqual(LocalDate.now()) || birthdate.isBefore(LocalDate.now().minusYears(100))){
             throw new IllegalArgumentException("Указана неверная дата рождения");
         }
 

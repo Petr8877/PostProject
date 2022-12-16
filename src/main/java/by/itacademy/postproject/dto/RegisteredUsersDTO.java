@@ -6,19 +6,21 @@ import java.util.Objects;
 public class RegisteredUsersDTO {
     private UserDTO user;
     private LocalDate dateRegistration;
-    private boolean isAdmin;
+    //  change line 10 (was boolean) and  add isAdmin line 11
+    private String userRole;
+    private static boolean isAdmin = false;
 
     public RegisteredUsersDTO(UserDTO user, LocalDate dateRegistration) {
         this.user = user;
         this.dateRegistration = dateRegistration;
-        this.isAdmin = false;
+        this.userRole = "user";
     }
 
 
     public RegisteredUsersDTO(UserDTO user) {
         this.user = user;
         this.dateRegistration = LocalDate.now();
-        this.isAdmin = false;
+        this.userRole = "user";
     }
 
     public UserDTO getUser() {
@@ -37,12 +39,17 @@ public class RegisteredUsersDTO {
         this.dateRegistration = dateRegistration;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    // change method : lines 42-44
+    public String getUserRole() {
+        return userRole;
     }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+// change method : lines 45-51
+    public void setAdmin() {
+        if (isAdmin == false){
+            userRole = "admin";
+             isAdmin = true;
+        }
+        else userRole = "user";
     }
 
     @Override
@@ -50,20 +57,20 @@ public class RegisteredUsersDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RegisteredUsersDTO that = (RegisteredUsersDTO) o;
-        return isAdmin == that.isAdmin
+        return userRole == that.userRole
                 && Objects.equals(user, that.user)
                 && Objects.equals(dateRegistration, that.dateRegistration);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user, dateRegistration, isAdmin);
+        return Objects.hash(user, dateRegistration, userRole);
     }
 
     @Override
     public String toString() {
         return "user = " + user +
                 ", dateRegistration = " + dateRegistration +
-                ", isAdmin = " + isAdmin;
+                ", isAdmin = " + userRole;
     }
 }

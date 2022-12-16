@@ -11,7 +11,7 @@ public class UserDTO {
 
     public UserDTO(String login, String password, String fullName, LocalDate birthdate) {
         this.login = login;
-        this.password = password;
+        this.password =  password;
         this.fullName = fullName;
         this.birthdate = birthdate;
     }
