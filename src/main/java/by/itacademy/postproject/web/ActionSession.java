@@ -1,9 +1,12 @@
 package by.itacademy.postproject.web;
 
+import by.itacademy.postproject.dto.UserSessionDTO;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class ActionSession  {
+
 
     public static String getParameterValue(HttpServletRequest request, String key){
         String value = request.getParameter(key);
@@ -18,10 +21,8 @@ public class ActionSession  {
         }
         return value;
     }
-    public static void saveSession(HttpServletRequest request, String key, String value){
+    public static void saveSession(HttpServletRequest request, String key, UserSessionDTO userSessionDTO){
         HttpSession session = request.getSession();
-        session.setAttribute(key,value);
+        session.setAttribute(key,userSessionDTO.getLogin());
     }
-
-
 }

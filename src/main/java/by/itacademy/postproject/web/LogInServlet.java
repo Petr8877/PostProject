@@ -1,5 +1,7 @@
 package by.itacademy.postproject.web;
 
+import by.itacademy.postproject.dto.LogInDTO;
+import by.itacademy.postproject.dto.UserSessionDTO;
 import by.itacademy.postproject.service.api.ILogInService;
 import by.itacademy.postproject.service.factory.LogInServiceSingleton;
 
@@ -30,14 +32,26 @@ public class LogInServlet extends HttpServlet {
         Map<String, String[]> parameterMap = req.getParameterMap();
 
         String[] logins = parameterMap.get(PARAM_NAME_LOGIN);
-        String login = (logins == null) ? null : logins[0];
 
         String[] passwords = parameterMap.get(PARAM_NAME_PASSWORD);
-        String password = (passwords == null) ? null : passwords[0];
+
         PrintWriter writer = resp.getWriter();
+
         try {
-            service.checkLogin(login, password);
-            ActionSession.saveSession(req,PARAM_NAME_LOGIN,login);
+            String login = (logins == null) ? null : logins[0];
+            String password = (passwords == null) ? null : passwords[0];
+
+            LogInDTO logInDTO = new LogInDTO(login,password);
+            if(service.checkLogin(logInDTO)){
+                UserSessionDTO userSessionDTO = new UserSessionDTO(logInDTO.getLogin());
+                ActionSession.saveSession(req,"user",userSessionDTO);
+            }
+
+
+
+
+//            ActionSession.saveSession(req,PARAM_NAME_PASSWORD,logInDTO.getPassword());
+
             writer.write("<p> Authorization is successful </p>");
         } catch (Exception e){
             writer.write("<p>"+e.getMessage()+"</p>");
