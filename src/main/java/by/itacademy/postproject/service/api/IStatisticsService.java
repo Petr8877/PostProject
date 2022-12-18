@@ -9,4 +9,6 @@ public interface IStatisticsService {
     int getCountMessage();
 
     void setActiveUsers();
+
+    void setCountMessage();
 }

@@ -10,9 +10,9 @@ public class RegisteredUsersDAOSingleton {
     }
 
     public static IRegisteredUsersDAO getInstance() {
-        if(instance == null){
-            synchronized (RegisteredUsersDAOSingleton.class){
-                if(instance == null){
+        if (instance == null) {
+            synchronized (RegisteredUsersDAOSingleton.class) {
+                if (instance == null) {
                     instance = new RegisteredUsersDAO();
                 }
             }

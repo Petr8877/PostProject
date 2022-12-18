@@ -40,7 +40,7 @@ public class MessageServlet extends HttpServlet {
         String text = (passwords == null) ? null : passwords[0];
         PrintWriter writer = resp.getWriter();
 
-        service.sendMessage(req.getSession().getId(), recipient, text);
+        service.sendMessage(ActionSession.getParameterValue(req, "user"), recipient, text);
 
         writer.write("<p> Message sent </p>");
     }
@@ -50,7 +50,7 @@ public class MessageServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
 
-        List<MessageDTO> messageDTOList = service.getMessage().get(req.getSession().getId());
+        List<MessageDTO> messageDTOList = service.getMessage().get(ActionSession.getParameterValue(req, "user"));
         PrintWriter writer = resp.getWriter();
         for (MessageDTO messageDTO : messageDTOList) {
             writer.write("<p>" + messageDTO + "</p>");

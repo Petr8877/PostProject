@@ -10,10 +10,10 @@ public class RegistrationServiceSingleton {
     private RegistrationServiceSingleton() {
     }
 
-    public static IRegistrationService getInstance(){
-        if(instance == null){
-            synchronized (RegistrationService.class){
-                if(instance == null){
+    public static IRegistrationService getInstance() {
+        if (instance == null) {
+            synchronized (RegistrationService.class) {
+                if (instance == null) {
                     instance = new RegistrationService(RegisteredUsersDAOSingleton.getInstance());
                 }
             }

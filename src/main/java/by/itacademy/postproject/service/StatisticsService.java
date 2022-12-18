@@ -1,31 +1,34 @@
 package by.itacademy.postproject.service;
 
-import by.itacademy.postproject.dao.StatisticsDAO;
-import by.itacademy.postproject.dao.api.IStatisticsDAO;
+import by.itacademy.postproject.dto.StatisticsDTO;
 import by.itacademy.postproject.service.api.IStatisticsService;
 
-import java.util.Set;
 
 public class StatisticsService implements IStatisticsService {
 
-    private final IStatisticsDAO dao;
+    private final StatisticsDTO dto;
 
-    public StatisticsService(IStatisticsDAO dao) {
-        this.dao = dao;
+    public StatisticsService(StatisticsDTO dto) {
+        this.dto = dto;
     }
 
     @Override
     public int getActiveUsers() {
-        return dao.getActiveUsers();
+        return dto.getActiveUsers();
     }
 
     @Override
     public int getCountMessage() {
-        return dao.getCountMessage();
+        return dto.getCountMessage();
     }
 
     @Override
-    public void setActiveUsers(){
-        dao.setActiveUsers();
+    public void setActiveUsers() {
+        dto.setActiveUsers();
+    }
+
+    @Override
+    public void setCountMessage() {
+        dto.setCountMessage();
     }
 }

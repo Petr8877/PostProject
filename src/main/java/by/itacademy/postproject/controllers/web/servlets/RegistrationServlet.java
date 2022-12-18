@@ -1,7 +1,6 @@
 package by.itacademy.postproject.controllers.web.servlets;
 
 import by.itacademy.postproject.dto.UserDTO;
-import by.itacademy.postproject.service.RegistrationService;
 import by.itacademy.postproject.service.api.IRegistrationService;
 import by.itacademy.postproject.service.factory.RegistrationServiceSingleton;
 
@@ -18,14 +17,14 @@ import java.util.Map;
 
 @WebServlet(name = "RegistrationServlet", urlPatterns = "/api/user")
 public class RegistrationServlet extends HttpServlet {
-    private IRegistrationService registrationService;
+    private final IRegistrationService registrationService;
 
     private final String LOGIN_PARAM_NAME = "login";
     private final String PASSWORD_PARAM_NAME = "password";
     private final String FULL_NAME_PARAM_NAME = "fullName";
     private final String BIRTHDATE_PARAM_NAME = "birthdate";
 
-    public RegistrationServlet( ) {
+    public RegistrationServlet() {
         this.registrationService = RegistrationServiceSingleton.getInstance();
     }
 
@@ -50,20 +49,20 @@ public class RegistrationServlet extends HttpServlet {
         String fullName = (fullNames == null) ? null : fullNames[0];
         String date = (dates == null) ? null : dates[0];
 
-        try{
-            if(logins == null) {
+        try {
+            if (logins == null) {
                 throw new IllegalArgumentException("Логин не введен");
             }
 
-            if(passwords == null) {
+            if (passwords == null) {
                 throw new IllegalArgumentException("Пароль не введен");
             }
 
-            if(fullNames == null) {
+            if (fullNames == null) {
                 throw new IllegalArgumentException("Полное имя не введено");
             }
 
-            if(dates == null) {
+            if (dates == null) {
                 throw new IllegalArgumentException("Дата рождения не введена");
             }
 
@@ -74,7 +73,7 @@ public class RegistrationServlet extends HttpServlet {
             writer.write("<p>" + "Пользователь зарегистрирован" + "</p>");
 
         } catch (IllegalArgumentException exception) {
-          writer.write("<p>" + exception.getMessage() + "</p>");
+            writer.write("<p>" + exception.getMessage() + "</p>");
         } catch (DateTimeParseException exception) {
             writer.write("<p>" + "Неверный формат даты" + "</p>");
         }

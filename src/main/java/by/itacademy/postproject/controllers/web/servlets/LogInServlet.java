@@ -1,6 +1,5 @@
 package by.itacademy.postproject.controllers.web.servlets;
 
-import by.itacademy.postproject.controllers.web.listeners.SessionListeners;
 import by.itacademy.postproject.service.api.ILogInService;
 import by.itacademy.postproject.service.factory.LogInServiceSingleton;
 
@@ -14,13 +13,15 @@ import java.util.Map;
 
 @WebServlet(name = "LogInServlet", urlPatterns = "/api/login")
 public class LogInServlet extends HttpServlet {
-    private final String  PARAM_NAME_LOGIN = "login";
-    private final String  PARAM_NAME_PASSWORD = "password";
+    private final String PARAM_NAME_LOGIN = "login";
+    private final String PARAM_NAME_PASSWORD = "password";
 
     private final ILogInService service;
-    public LogInServlet(){
+
+    public LogInServlet() {
         this.service = LogInServiceSingleton.getInstance();
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
@@ -34,12 +35,11 @@ public class LogInServlet extends HttpServlet {
         String[] passwords = parameterMap.get(PARAM_NAME_PASSWORD);
         String password = (passwords == null) ? null : passwords[0];
         PrintWriter writer = resp.getWriter();
-           if (service.checkLogin(login, password)){
-            ActionSession.saveSession(req,login,login);
-            //req.getSession().setAttribute(login, login);
-            writer.write("<p> Authorization is successful </p>");}
-           else {
-               writer.write("<p> Login and password not exist </p>");
-           }
+        if (service.checkLogin(login, password)) {
+            ActionSession.saveSession(req, "user", login);
+            writer.write("<p> Authorization is successful </p>");
+        } else {
+            writer.write("<p> Login and password not exist </p>");
+        }
     }
 }

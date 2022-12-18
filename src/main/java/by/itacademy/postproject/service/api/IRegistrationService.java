@@ -12,5 +12,4 @@ public interface IRegistrationService {
     RegisteredUsersDTO getUser(String login);
 
 
-
 }
