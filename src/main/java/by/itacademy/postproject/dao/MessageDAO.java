@@ -27,7 +27,7 @@ public class MessageDAO implements IMessageDAO {
 
     @Override
     public Map<String, List<MessageDTO>> getMessage() {
-        Map<String, List<MessageDTO>> copyUsersMessages1 = usersMessages;
-        return copyUsersMessages1;
+        Map<String, List<MessageDTO>> copyUsersMessages = usersMessages;
+        return copyUsersMessages;
     }
 }

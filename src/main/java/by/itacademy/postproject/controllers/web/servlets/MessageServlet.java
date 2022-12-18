@@ -1,4 +1,4 @@
-package by.itacademy.postproject.web;
+package by.itacademy.postproject.controllers.web.servlets;
 
 import by.itacademy.postproject.dto.MessageDTO;
 import by.itacademy.postproject.service.api.IMessageService;
@@ -40,16 +40,18 @@ public class MessageServlet extends HttpServlet {
         String text = (passwords == null) ? null : passwords[0];
         PrintWriter writer = resp.getWriter();
 
-        service.sendMessage(ActionSession.getParameterValue(req, "login"), recipient, text);
+        service.sendMessage(req.getSession().getId(), recipient, text);
 
         writer.write("<p> Message sent </p>");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<MessageDTO> messageDTOList = service.getMessage().get(ActionSession.getParameterValue(req, "login"));
-        PrintWriter writer = resp.getWriter();
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
 
+        List<MessageDTO> messageDTOList = service.getMessage().get(req.getSession().getId());
+        PrintWriter writer = resp.getWriter();
         for (MessageDTO messageDTO : messageDTOList) {
             writer.write("<p>" + messageDTO + "</p>");
         }

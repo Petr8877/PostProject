@@ -1,13 +1,12 @@
-package by.itacademy.postproject.web;
+package by.itacademy.postproject.controllers.web.servlets;
 
+import by.itacademy.postproject.controllers.web.listeners.SessionListeners;
 import by.itacademy.postproject.service.api.ILogInService;
 import by.itacademy.postproject.service.factory.LogInServiceSingleton;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
@@ -36,7 +35,8 @@ public class LogInServlet extends HttpServlet {
         String password = (passwords == null) ? null : passwords[0];
         PrintWriter writer = resp.getWriter();
            if (service.checkLogin(login, password)){
-            ActionSession.saveSession(req,PARAM_NAME_LOGIN,login);
+            ActionSession.saveSession(req,login,login);
+            //req.getSession().setAttribute(login, login);
             writer.write("<p> Authorization is successful </p>");}
            else {
                writer.write("<p> Login and password not exist </p>");

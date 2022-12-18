@@ -6,4 +6,8 @@
 
     <display-name>Post Project Group 4</display-name>
 
+    <listener>
+        <listener-class>by.itacademy.postproject.controllers.web.listeners.SessionListeners</listener-class>
+    </listener>
+
 </web-app>

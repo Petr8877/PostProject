@@ -1,4 +1,4 @@
-package by.itacademy.postproject.web;
+package by.itacademy.postproject.controllers.web.servlets;
 
 import by.itacademy.postproject.dto.UserDTO;
 import by.itacademy.postproject.service.RegistrationService;

@@ -1,14 +1,16 @@
-package by.itacademy.postproject.web;
+package by.itacademy.postproject.controllers.web.servlets;
+
+import by.itacademy.postproject.controllers.web.listeners.SessionListeners;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class ActionSession  {
-
+    private static HttpSession session;
     public static String getParameterValue(HttpServletRequest request, String key){
-        String value = request.getParameter(key);
+        String value = (String) session.getAttribute(key);
         if (value == null){
-            HttpSession session = request.getSession();
+            session = request.getSession();
             if(!session.isNew()){
                 value = (String) session.getAttribute(key);
             }
@@ -19,8 +21,11 @@ public class ActionSession  {
         return value;
     }
     public static void saveSession(HttpServletRequest request, String key, String value){
-        HttpSession session = request.getSession();
-        session.setAttribute(key,value);
+        if (request.getSession() == null){
+            session = request.getSession();
+        session.setAttribute(key,value);} else {
+            request.getSession().setAttribute(key,value);
+        }
     }
 
 
