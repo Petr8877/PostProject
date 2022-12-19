@@ -16,18 +16,17 @@ import java.io.PrintWriter;
 public class StatisticsServlet extends HttpServlet {
     private final IStatisticsService service;
 
-
     public StatisticsServlet() {
         this.service = StatisticsServiceSingleton.getInstance();
     }
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
         if ("Admin".equals(ActionSession.getParameterValue(req, "user"))) {
-            writer.write("<p>" + service.getActiveUsers() + "</p>");
-            writer.write("<p>" + service.getCountMessage() + "</p>");
+            writer.write("<p>" + service.getAllStatistics() + "</p>");
+            /*writer.write("<p>" + "Number of active users in the application: " + service.getActiveUsers() + "</p>");
+            writer.write("<p>" + "Number of sent messages in the application: " + service.getCountMessage() + "</p>");*/
         }else{
             writer.write("No access");
         }

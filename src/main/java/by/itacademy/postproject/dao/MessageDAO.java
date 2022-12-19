@@ -2,11 +2,9 @@ package by.itacademy.postproject.dao;
 
 import by.itacademy.postproject.dao.api.IMessageDAO;
 import by.itacademy.postproject.dto.MessageDTO;
+import by.itacademy.postproject.dto.RegisteredUsersDTO;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MessageDAO implements IMessageDAO {
 
@@ -27,7 +25,11 @@ public class MessageDAO implements IMessageDAO {
 
     @Override
     public Map<String, List<MessageDTO>> getMessage() {
-        Map<String, List<MessageDTO>> copyUsersMessages = usersMessages;
-        return copyUsersMessages;
+        return usersMessages;
+    }
+
+    @Override
+    public List<MessageDTO> getAllUserMessage(String login) {
+        return this.usersMessages.get(login);
     }
 }

@@ -3,9 +3,7 @@ package by.itacademy.postproject.dto;
 import java.util.Objects;
 
 public class StatisticsDTO {
-
     private int activeUsers;
-
     private int countMessage;
 
     public int getActiveUsers() {
@@ -39,9 +37,7 @@ public class StatisticsDTO {
 
     @Override
     public String toString() {
-        return "StatisticsDTO{" +
-                "activeUsers=" + activeUsers +
-                ", countMessage=" + countMessage +
-                '}';
+        return "Number of active users in the application: " + activeUsers + "\n" +
+                "Number of sent messages in the application: " + countMessage;
     }
 }

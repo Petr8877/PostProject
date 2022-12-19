@@ -45,7 +45,7 @@ public class RegisteredUsersDTO {
     }
 // change method : lines 45-51
     public void setAdmin() {
-        if (isAdmin == false){
+        if (!isAdmin){
             userRole = "admin";
              isAdmin = true;
         }
@@ -57,7 +57,7 @@ public class RegisteredUsersDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RegisteredUsersDTO that = (RegisteredUsersDTO) o;
-        return userRole == that.userRole
+        return Objects.equals(userRole, that.userRole)
                 && Objects.equals(user, that.user)
                 && Objects.equals(dateRegistration, that.dateRegistration);
     }

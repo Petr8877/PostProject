@@ -35,11 +35,24 @@ public class LogInServlet extends HttpServlet {
         String[] passwords = parameterMap.get(PARAM_NAME_PASSWORD);
         String password = (passwords == null) ? null : passwords[0];
         PrintWriter writer = resp.getWriter();
-        if (service.checkLogin(login, password)) {
-            ActionSession.saveSession(req, "user", login);
-            writer.write("<p> Authorization is successful </p>");
-        } else {
-            writer.write("<p> Login and password not exist </p>");
+        try {
+            if (logins == null) {
+                throw new IllegalArgumentException("Login not entered");
+            }
+
+            if (passwords == null) {
+                throw new IllegalArgumentException("Password not entered");
+            }
+
+            if (service.checkLogin(login, password)) {
+                ActionSession.saveSession(req, "user", login);
+                writer.write("<p> Authorization is successful </p>");
+            } else {
+                writer.write("<p> Login and password not exist </p>");
+            }
+        } catch (IllegalArgumentException exception) {
+            writer.write("<p>" + exception.getMessage() + "</p>");
         }
     }
+
 }

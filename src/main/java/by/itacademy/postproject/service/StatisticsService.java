@@ -8,8 +8,8 @@ public class StatisticsService implements IStatisticsService {
 
     private final StatisticsDTO dto;
 
-    public StatisticsService(StatisticsDTO dto) {
-        this.dto = dto;
+    public StatisticsService() {
+        this.dto = new StatisticsDTO();
     }
 
     @Override
@@ -30,5 +30,10 @@ public class StatisticsService implements IStatisticsService {
     @Override
     public void setCountMessage() {
         dto.setCountMessage();
+    }
+
+    @Override
+    public StatisticsDTO getAllStatistics() {
+        return dto;
     }
 }

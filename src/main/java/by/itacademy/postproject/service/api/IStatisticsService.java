@@ -1,5 +1,7 @@
 package by.itacademy.postproject.service.api;
 
+import by.itacademy.postproject.dto.StatisticsDTO;
+
 import java.util.Set;
 
 public interface IStatisticsService {
@@ -11,4 +13,7 @@ public interface IStatisticsService {
     void setActiveUsers();
 
     void setCountMessage();
+
+    //на рассмотрение
+    StatisticsDTO getAllStatistics();
 }

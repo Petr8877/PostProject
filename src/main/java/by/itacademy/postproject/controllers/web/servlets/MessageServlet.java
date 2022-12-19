@@ -33,16 +33,30 @@ public class MessageServlet extends HttpServlet {
 
         Map<String, String[]> parameterMap = req.getParameterMap();
 
-        String[] logins = parameterMap.get(PARAM_NAME_RECIPIENT);
-        String recipient = (logins == null) ? null : logins[0];
+        String[] recipients = parameterMap.get(PARAM_NAME_RECIPIENT);
+        String recipient = (recipients == null) ? null : recipients[0];
 
-        String[] passwords = parameterMap.get(PARAM_NAME_TEXT);
-        String text = (passwords == null) ? null : passwords[0];
+        String[] texts = parameterMap.get(PARAM_NAME_TEXT);
+        String text = (texts == null) ? null : texts[0];
+
         PrintWriter writer = resp.getWriter();
 
-        service.sendMessage(ActionSession.getParameterValue(req, "user"), recipient, text);
+        try{
+            if(recipients == null) {
+                throw new IllegalArgumentException("Message recipient not entered");
+            }
 
-        writer.write("<p> Message sent </p>");
+            if(texts == null) {
+                throw new IllegalArgumentException("No message to send to recipient");
+            }
+
+            service.sendMessage(ActionSession.getParameterValue(req, "user"), recipient, text);
+
+            writer.write("<p> Message sent </p>");
+        } catch (IllegalArgumentException exception) {
+            writer.write("<p>" + exception.getMessage() + "</p>");
+        }
+
     }
 
     @Override
@@ -50,9 +64,9 @@ public class MessageServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
 
-        List<MessageDTO> messageDTOList = service.getMessage().get(ActionSession.getParameterValue(req, "user"));
+        List<MessageDTO> messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user"));
         PrintWriter writer = resp.getWriter();
-        for (MessageDTO messageDTO : messageDTOList) {
+        for (MessageDTO messageDTO : messageList) {
             writer.write("<p>" + messageDTO + "</p>");
         }
     }

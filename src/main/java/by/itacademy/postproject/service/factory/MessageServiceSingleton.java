@@ -14,7 +14,8 @@ public class MessageServiceSingleton {
         if (instance == null) {
             synchronized (MessageService.class) {
                 if (instance == null) {
-                    instance = new MessageService(MessageDAOSingleton.getInstance());
+                    instance = new MessageService(MessageDAOSingleton.getInstance(),
+                            StatisticsServiceSingleton.getInstance());
                 }
             }
         }

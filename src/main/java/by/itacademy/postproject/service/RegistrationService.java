@@ -34,17 +34,17 @@ public class RegistrationService implements IRegistrationService {
         String login = userDTO.getLogin();
 
         if (login == null || login.isBlank()) {
-            throw new IllegalArgumentException("Логин не введен");
+            throw new IllegalArgumentException("Login not entered");
         }
 
         if (dao.isExist(login)) {
-            throw new IllegalArgumentException("Пользователь с таким логином уже зарегистрирован");
+            throw new IllegalArgumentException("User with this login is already registered");
         }
 
         String password = userDTO.getPassword();
 
         if (password == null || password.isBlank()) {
-            throw new IllegalArgumentException("Пароль не введен");
+            throw new IllegalArgumentException("Password not entered");
         }
 
         //можно доп.проверить пароль на кол-во символов
@@ -52,16 +52,17 @@ public class RegistrationService implements IRegistrationService {
         String fullName = userDTO.getFullName();
 
         if (fullName == null || fullName.isBlank()) {
-            throw new IllegalArgumentException("Полное имя не введено");
+            throw new IllegalArgumentException("Full name not entered");
         }
 
         LocalDate birthdate = userDTO.getBirthdate();
 
-        if (birthdate.isAfter(LocalDate.now()) || birthdate.isEqual(LocalDate.now()) || birthdate.isBefore(LocalDate.now().minusYears(100))) {
-            throw new IllegalArgumentException("Указана неверная дата рождения");
+        if (birthdate.isAfter(LocalDate.now())
+                || birthdate.isEqual(LocalDate.now())
+                || birthdate.isBefore(LocalDate.now().minusYears(100))) {
+            throw new IllegalArgumentException("Invalid date of birth");
         }
 
-        //можно доп.проверить возраст пользователя
 
     }
 }
