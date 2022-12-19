@@ -14,17 +14,22 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "StatisticsServlet", urlPatterns = "/api/admin/statistics")
 public class StatisticsServlet extends HttpServlet {
-
     private final IStatisticsService service;
+
 
     public StatisticsServlet() {
         this.service = StatisticsServiceSingleton.getInstance();
     }
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
-        writer.write("<p>" + service.getActiveUsers() + "</p>");
-        writer.write("<p>" + service.getCountMessage() + "</p>");
+        if ("Admin".equals(ActionSession.getParameterValue(req, "user"))) {
+            writer.write("<p>" + service.getActiveUsers() + "</p>");
+            writer.write("<p>" + service.getCountMessage() + "</p>");
+        }else{
+            writer.write("No access");
+        }
     }
 }
