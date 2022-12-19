@@ -6,11 +6,11 @@ import java.util.Set;
 
 public interface IStatisticsService {
 
-    int getActiveUsers();
+    Set<String> getActiveUsers();
 
     int getCountMessage();
 
-    void setActiveUsers();
+    void addActiveUsers(String login);
 
     void setCountMessage();
 

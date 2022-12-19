@@ -3,6 +3,8 @@ package by.itacademy.postproject.service;
 import by.itacademy.postproject.dto.StatisticsDTO;
 import by.itacademy.postproject.service.api.IStatisticsService;
 
+import java.util.Set;
+
 
 public class StatisticsService implements IStatisticsService {
 
@@ -13,7 +15,7 @@ public class StatisticsService implements IStatisticsService {
     }
 
     @Override
-    public int getActiveUsers() {
+    public Set<String> getActiveUsers() {
         return dto.getActiveUsers();
     }
 
@@ -23,8 +25,8 @@ public class StatisticsService implements IStatisticsService {
     }
 
     @Override
-    public void setActiveUsers() {
-        dto.setActiveUsers();
+    public void addActiveUsers(String login) {
+        dto.addActiveUsers(login);
     }
 
     @Override

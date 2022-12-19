@@ -1,17 +1,19 @@
 package by.itacademy.postproject.dto;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class StatisticsDTO {
-    private int activeUsers;
+    private final Set<String> activeUsers=new HashSet<>();
     private int countMessage;
 
-    public int getActiveUsers() {
-        return this.activeUsers;
+    public void addActiveUsers(String login) {
+        this.activeUsers.add(login);
     }
 
-    public void setActiveUsers() {
-        this.activeUsers++;
+    public Set<String> getActiveUsers() {
+        return activeUsers;
     }
 
     public int getCountMessage() {
@@ -37,7 +39,7 @@ public class StatisticsDTO {
 
     @Override
     public String toString() {
-        return "Number of active users in the application: " + activeUsers + "\n" +
+        return "Number of active users in the application: " + activeUsers.size() + "\n" +
                 "Number of sent messages in the application: " + countMessage;
     }
 }

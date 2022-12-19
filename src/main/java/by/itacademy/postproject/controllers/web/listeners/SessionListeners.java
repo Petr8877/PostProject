@@ -1,5 +1,6 @@
 package by.itacademy.postproject.controllers.web.listeners;
 
+
 import by.itacademy.postproject.service.api.IStatisticsService;
 import by.itacademy.postproject.service.factory.StatisticsServiceSingleton;
 
@@ -12,7 +13,7 @@ public class SessionListeners implements HttpSessionAttributeListener {
     public void attributeAdded(HttpSessionBindingEvent httpSessionBindingEvent) {
         if (httpSessionBindingEvent.getName().equals("user")) {
             IStatisticsService service = StatisticsServiceSingleton.getInstance();
-            service.setActiveUsers();
+            service.addActiveUsers((String) httpSessionBindingEvent.getSession().getAttribute("user"));
         }
     }
 
@@ -25,7 +26,7 @@ public class SessionListeners implements HttpSessionAttributeListener {
     public void attributeReplaced(HttpSessionBindingEvent httpSessionBindingEvent) {
         if (httpSessionBindingEvent.getName().equals("user")) {
             IStatisticsService service = StatisticsServiceSingleton.getInstance();
-            service.setActiveUsers();
+            service.addActiveUsers((String) httpSessionBindingEvent.getSession().getAttribute("user"));
         }
     }
 }
