@@ -10,6 +10,7 @@ public interface IRegistrationService {
     boolean isExist(String login);
 
     RegisteredUsersDTO getUser(String login);
+    int getCountOfUsers();
 
 
 

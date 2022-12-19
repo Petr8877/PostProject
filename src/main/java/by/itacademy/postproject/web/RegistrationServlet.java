@@ -1,7 +1,6 @@
 package by.itacademy.postproject.web;
 
 import by.itacademy.postproject.dto.UserDTO;
-import by.itacademy.postproject.service.RegistrationService;
 import by.itacademy.postproject.service.api.IRegistrationService;
 import by.itacademy.postproject.service.factory.RegistrationServiceSingleton;
 

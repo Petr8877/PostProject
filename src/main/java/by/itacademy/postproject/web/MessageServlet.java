@@ -1,11 +1,9 @@
 package by.itacademy.postproject.web;
 
-import by.itacademy.postproject.dao.factory.MessageDAOSingleton;
 import by.itacademy.postproject.dto.MessageDTO;
-import by.itacademy.postproject.dto.PostMessageDTO;
-import by.itacademy.postproject.dto.UserSessionDTO;
 import by.itacademy.postproject.service.api.IMessageService;
 import by.itacademy.postproject.service.factory.MessageServiceSingleton;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,9 +33,9 @@ public class MessageServlet extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
         List<MessageDTO> user = service.getUserSendMessage(ActionSession.getParameterValue(req, "user"));
-        user.stream().forEach(s-> writer.write("<p>"+s.getText()+"</p>"));
+        user.forEach(s-> writer.write("<p>"+s.getText()+"</p>"));
         writer.write("<p> All messages </p>");
-        service.getSendMessage().entrySet().forEach(s -> writer.write("<p>"+s.getKey()+"</p>"));
+        service.getSendMessage().forEach((key, value) -> writer.write("<p>" + key + "</p>"));
 
     }
 
@@ -60,6 +58,7 @@ public class MessageServlet extends HttpServlet {
         try {
             MessageDTO messageDTO = new MessageDTO(ActionSession.getParameterValue(req, "user"), recipient, text);
             service.sendMessage(messageDTO);
+//
             writer.write("<p> Message send </p>");
         } catch (Exception e){
             writer.write("<p>"+e.getMessage()+"</p>");

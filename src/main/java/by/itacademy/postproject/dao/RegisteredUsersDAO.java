@@ -1,11 +1,13 @@
 package by.itacademy.postproject.dao;
 
 import by.itacademy.postproject.dao.api.IRegisteredUsersDAO;
+
 import by.itacademy.postproject.dto.RegisteredUsersDTO;
 import by.itacademy.postproject.dto.UserDTO;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+
 import java.util.Map;
 
 public class RegisteredUsersDAO implements IRegisteredUsersDAO {
@@ -34,6 +36,11 @@ public class RegisteredUsersDAO implements IRegisteredUsersDAO {
     public RegisteredUsersDTO getUser(String login) {
         return this.registeredUsers.get(login);
 
+    }
+
+    @Override
+    public int getCountOfUser() {
+        return registeredUsers.entrySet().size();
     }
 
 }

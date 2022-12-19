@@ -45,6 +45,7 @@ public class LogInServlet extends HttpServlet {
             if(service.checkLogin(logInDTO)){
                 UserSessionDTO userSessionDTO = new UserSessionDTO(logInDTO.getLogin());
                 ActionSession.saveSession(req,"user",userSessionDTO);
+
             }
 
 

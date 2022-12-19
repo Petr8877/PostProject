@@ -30,6 +30,11 @@ public class RegistrationService implements IRegistrationService {
         return this.dao.getUser(login);
     }
 
+    @Override
+    public int getCountOfUsers() {
+        return this.dao.getCountOfUser();
+    }
+
     private void validate(UserDTO userDTO){
         String login = userDTO.getLogin();
 

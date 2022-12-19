@@ -8,6 +8,7 @@ public interface IRegisteredUsersDAO {
 
     boolean isExist(String login);
     RegisteredUsersDTO getUser(String login);
+    int getCountOfUser();
 
 }
 
