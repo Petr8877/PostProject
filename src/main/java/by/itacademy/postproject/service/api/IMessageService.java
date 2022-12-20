@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface IMessageService {
 
-    void sendMessage(String sender, String recipient, String text);
+    void sendMessage(MessageDTO messageDTO);
 
     Map<String, List<MessageDTO>> getMessage();
 

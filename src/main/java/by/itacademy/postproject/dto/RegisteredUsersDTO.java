@@ -6,7 +6,6 @@ import java.util.Objects;
 public class RegisteredUsersDTO {
     private UserDTO user;
     private LocalDate dateRegistration;
-    //  change line 10 (was boolean) and  add isAdmin line 11
     private String userRole;
     private static boolean isAdmin = false;
 
@@ -39,11 +38,10 @@ public class RegisteredUsersDTO {
         this.dateRegistration = dateRegistration;
     }
 
-    // change method : lines 42-44
     public String getUserRole() {
         return userRole;
     }
-// change method : lines 45-51
+
     public void setAdmin() {
         if (!isAdmin){
             userRole = "admin";

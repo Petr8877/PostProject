@@ -50,7 +50,8 @@ public class MessageServlet extends HttpServlet {
                 throw new IllegalArgumentException("No message to send to recipient");
             }
 
-            service.sendMessage(ActionSession.getParameterValue(req, "user"), recipient, text);
+            MessageDTO messageDTO = new MessageDTO(ActionSession.getParameterValue(req, "user"), recipient, text);
+            service.sendMessage(messageDTO);
 
             writer.write("<p> Message sent </p>");
         } catch (IllegalArgumentException exception) {

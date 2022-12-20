@@ -21,8 +21,8 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public void sendMessage(String sender, String recipient, String text) {
-        dao.save(new MessageDTO(sender, recipient, text));
+    public void sendMessage(MessageDTO messageDTO) {
+        dao.save(messageDTO);
         statisticsService.setCountMessage();
     }
 
