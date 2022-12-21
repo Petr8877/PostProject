@@ -1,5 +1,8 @@
 package by.itacademy.postproject.service.api;
 
+import by.itacademy.postproject.dto.LogInDTO;
+
 public interface ILogInService {
-    boolean checkLogin(String login, String password);
+
+    void signIn(LogInDTO log);
 }

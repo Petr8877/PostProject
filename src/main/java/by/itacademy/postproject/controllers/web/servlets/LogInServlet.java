@@ -1,5 +1,6 @@
 package by.itacademy.postproject.controllers.web.servlets;
 
+import by.itacademy.postproject.dto.LogInDTO;
 import by.itacademy.postproject.service.api.ILogInService;
 import by.itacademy.postproject.service.factory.LogInServiceSingleton;
 
@@ -34,7 +35,9 @@ public class LogInServlet extends HttpServlet {
 
         String[] passwords = parameterMap.get(PARAM_NAME_PASSWORD);
         String password = (passwords == null) ? null : passwords[0];
+
         PrintWriter writer = resp.getWriter();
+
         try {
             if (logins == null) {
                 throw new IllegalArgumentException("Login not entered");
@@ -44,12 +47,12 @@ public class LogInServlet extends HttpServlet {
                 throw new IllegalArgumentException("Password not entered");
             }
 
-            if (service.checkLogin(login, password)) {
-                ActionSession.saveSession(req, "user", login);
-                writer.write("<p> Authorization is successful </p>");
-            } else {
-                writer.write("<p> Login and password not exist </p>");
-            }
+            LogInDTO log = new LogInDTO(login, password);
+            service.signIn(log);
+
+            ActionSession.saveSession(req, "user", login);
+            writer.write("<p> Authorization is successful </p>");
+
         } catch (IllegalArgumentException exception) {
             writer.write("<p>" + exception.getMessage() + "</p>");
         }
