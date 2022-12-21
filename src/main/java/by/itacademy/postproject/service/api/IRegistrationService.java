@@ -1,6 +1,6 @@
 package by.itacademy.postproject.service.api;
 
-import by.itacademy.postproject.dto.RegisteredUsersDTO;
+import by.itacademy.postproject.entity.RegisteredUsersEntity;
 import by.itacademy.postproject.dto.UserDTO;
 
 public interface IRegistrationService {
@@ -9,7 +9,7 @@ public interface IRegistrationService {
 
     boolean isExist(String login);
 
-    RegisteredUsersDTO getUser(String login);
+    RegisteredUsersEntity getUser(String login);
 
 
 }

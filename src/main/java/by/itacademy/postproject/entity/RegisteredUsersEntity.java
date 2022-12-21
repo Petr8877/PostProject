@@ -1,22 +1,24 @@
-package by.itacademy.postproject.dto;
+package by.itacademy.postproject.entity;
+
+import by.itacademy.postproject.dto.UserDTO;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class RegisteredUsersDTO {
+public class RegisteredUsersEntity {
     private UserDTO user;
     private LocalDate dateRegistration;
     private String userRole;
     private static boolean isAdmin = false;
 
-    public RegisteredUsersDTO(UserDTO user, LocalDate dateRegistration) {
+    public RegisteredUsersEntity(UserDTO user, LocalDate dateRegistration) {
         this.user = user;
         this.dateRegistration = dateRegistration;
         this.userRole = "user";
     }
 
 
-    public RegisteredUsersDTO(UserDTO user) {
+    public RegisteredUsersEntity(UserDTO user) {
         this.user = user;
         this.dateRegistration = LocalDate.now();
         this.userRole = "user";
@@ -54,7 +56,7 @@ public class RegisteredUsersDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RegisteredUsersDTO that = (RegisteredUsersDTO) o;
+        RegisteredUsersEntity that = (RegisteredUsersEntity) o;
         return Objects.equals(userRole, that.userRole)
                 && Objects.equals(user, that.user)
                 && Objects.equals(dateRegistration, that.dateRegistration);

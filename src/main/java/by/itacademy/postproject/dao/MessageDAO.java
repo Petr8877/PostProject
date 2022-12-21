@@ -1,35 +1,34 @@
 package by.itacademy.postproject.dao;
 
 import by.itacademy.postproject.dao.api.IMessageDAO;
-import by.itacademy.postproject.dto.MessageDTO;
-import by.itacademy.postproject.dto.RegisteredUsersDTO;
+import by.itacademy.postproject.entity.SavedMessageEntity;
 
 import java.util.*;
 
 public class MessageDAO implements IMessageDAO {
 
-    private final Map<String, List<MessageDTO>> usersMessages = new HashMap<>();
-
+    private final Map<String, List<SavedMessageEntity>> usersMessages = new HashMap<>();
 
     @Override
-    public void save(MessageDTO messageDTO) {
-        List<MessageDTO> list;
-        if (usersMessages.containsKey(messageDTO.getSender())) {
-            list = usersMessages.get(messageDTO.getSender());
+    public void save(SavedMessageEntity messageEntity) {
+        List<SavedMessageEntity> list;
+        String loginSender = messageEntity.getMessageDTO().getSender();
+        if (usersMessages.containsKey(loginSender)){
+            list = usersMessages.get(loginSender);
         } else {
             list = new ArrayList<>();
         }
-        list.add(messageDTO);
-        usersMessages.put(messageDTO.getSender(), list);
+        list.add(messageEntity);
+        usersMessages.put(loginSender, list);
     }
 
     @Override
-    public Map<String, List<MessageDTO>> getMessage() {
+    public Map<String, List<SavedMessageEntity>> getMessage() {
         return usersMessages;
     }
 
     @Override
-    public List<MessageDTO> getAllUserMessage(String login) {
+    public List<SavedMessageEntity> getAllUserMessage(String login) {
         return this.usersMessages.get(login);
     }
 }

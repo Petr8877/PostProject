@@ -1,6 +1,7 @@
 package by.itacademy.postproject.controllers.web.servlets;
 
 import by.itacademy.postproject.dto.MessageDTO;
+import by.itacademy.postproject.entity.SavedMessageEntity;
 import by.itacademy.postproject.service.api.IMessageService;
 import by.itacademy.postproject.service.factory.MessageServiceSingleton;
 
@@ -65,10 +66,10 @@ public class MessageServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
 
-        List<MessageDTO> messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user"));
+        List<SavedMessageEntity> messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user"));
         PrintWriter writer = resp.getWriter();
-        for (MessageDTO messageDTO : messageList) {
-            writer.write("<p>" + messageDTO + "</p>");
+        for (SavedMessageEntity messageEntity : messageList) {
+            writer.write("<p>" + messageEntity + "</p>");
         }
     }
 }

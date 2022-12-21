@@ -1,14 +1,14 @@
 package by.itacademy.postproject.dao.api;
 
-import by.itacademy.postproject.dto.RegisteredUsersDTO;
+import by.itacademy.postproject.entity.RegisteredUsersEntity;
 
 public interface IRegisteredUsersDAO {
 
-    void save(RegisteredUsersDTO registeredUsersDTO);
+    void save(RegisteredUsersEntity registeredUsersEntity);
 
     boolean isExist(String login);
 
-    RegisteredUsersDTO getUser(String login);
+    RegisteredUsersEntity getUser(String login);
 
 
 }

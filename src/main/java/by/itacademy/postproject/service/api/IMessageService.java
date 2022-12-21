@@ -1,7 +1,7 @@
 package by.itacademy.postproject.service.api;
 
 import by.itacademy.postproject.dto.MessageDTO;
-import by.itacademy.postproject.dto.RegisteredUsersDTO;
+import by.itacademy.postproject.entity.SavedMessageEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -10,7 +10,7 @@ public interface IMessageService {
 
     void sendMessage(MessageDTO messageDTO);
 
-    Map<String, List<MessageDTO>> getMessage();
+    Map<String, List<SavedMessageEntity>> getMessage();
 
-    List<MessageDTO>getAllUserMessage(String login);
+    List<SavedMessageEntity>getAllUserMessage(String login);
 }

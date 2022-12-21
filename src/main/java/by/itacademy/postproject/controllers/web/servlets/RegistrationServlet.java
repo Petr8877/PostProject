@@ -51,33 +51,32 @@ public class RegistrationServlet extends HttpServlet {
 
         try {
             if (logins == null) {
-                throw new IllegalArgumentException("Логин не введен");
+                throw new IllegalArgumentException("Login not entered");
             }
 
             if (passwords == null) {
-                throw new IllegalArgumentException("Пароль не введен");
+                throw new IllegalArgumentException("Password not entered");
             }
 
             if (fullNames == null) {
-                throw new IllegalArgumentException("Полное имя не введено");
+                throw new IllegalArgumentException("Full name not entered");
             }
 
             if (dates == null) {
-                throw new IllegalArgumentException("Дата рождения не введена");
+                throw new IllegalArgumentException("Date of birth not entered");
             }
 
             LocalDate birthdate = parseDate(date);
 
             registrationService.register(new UserDTO(login, password, fullName, birthdate));
 
-            writer.write("<p>" + "Пользователь зарегистрирован" + "</p>");
+            writer.write("<p> User registered </p>");
 
         } catch (IllegalArgumentException exception) {
             writer.write("<p>" + exception.getMessage() + "</p>");
         } catch (DateTimeParseException exception) {
-            writer.write("<p>" + "Неверный формат даты" + "</p>");
+            writer.write("<p> Invalid date of birth format </p>");
         }
-
     }
 
     @Override
@@ -92,7 +91,7 @@ public class RegistrationServlet extends HttpServlet {
 
     public LocalDate parseDate(String date) {
         if (date == null) {
-            throw new IllegalArgumentException("Дата рождения не введена");
+            throw new IllegalArgumentException("Date of birth not entered");
         }
         return LocalDate.parse(date);
     }
