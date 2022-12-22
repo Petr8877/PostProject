@@ -6,8 +6,8 @@
 <p></p>
 <p></p>
 <body>
-<a href="http://localhost:8080/PostProject/ui/singUp">Регистрация</a><br><br>
-<a href="http://localhost:8080/PostProject/ui/login">Вход</a><br><br>
-<a href="http://localhost:8080/PostProject/ui/user/message">Отправить письмо</a>
+<a href="${pageContext.request.contextPath}/ui/singUp">Регистрация</a><br><br>
+<a href="${pageContext.request.contextPath}/ui/login">Вход</a><br><br>
+<a href="${pageContext.request.contextPath}/ui/user/message">Отправить письмо</a>
 </body>
 </html>

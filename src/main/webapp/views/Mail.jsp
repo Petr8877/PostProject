@@ -5,7 +5,7 @@
 <html>
 <head>Очень плохая почта</head>
 <p> ${sessionScope.user} </p>
-<form method="POST" action="/PostProject/api/message">
+<form method="POST" action="${pageContext.request.contextPath}/api/message">
 
   <label for="recipient">Введите получателя:</label>
   <input type="text" id="recipient" name="recipient"><br><br>
