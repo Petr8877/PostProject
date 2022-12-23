@@ -25,7 +25,6 @@ public class UserSecurityFilter implements Filter {
         HttpSession session = request.getSession();
         if (session != null && session.getAttribute("user") != null){
             filterChain.doFilter(request,response);
-
         }else {
             response.sendRedirect(contextPath+"/signIn");
         }

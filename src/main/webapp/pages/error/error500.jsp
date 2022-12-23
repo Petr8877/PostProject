@@ -9,6 +9,6 @@
     Status code: ${pageContext.errorData.statusCode} <br/>
     Exception: ${pageContext.exception} <br/>
     Message from exception: ${pageContext.exception.message}
-<a href="index.jsp">Back to index</a>
+<a href="index.jsp">Back to main</a>
 </body>
 </html>

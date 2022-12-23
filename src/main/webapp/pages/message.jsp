@@ -7,17 +7,12 @@
     <title>Registration page</title>
 </head>
 <body>
-<form action= "${pageContext.request.contextPath}/api/user" method="POST">
-      Login:</br>
-    <input type="text" name="login" />
-     </br>Password:</br>
-    <input type="password" name="password" />
-     </br>FullName:</br>
-        <input type="text" name="fullName" />
-     </br>Birthday:</br>
-             <input type="text" name="birthdate" />
+<form action= "${pageContext.request.contextPath}/api/message" method="POST">
+      Recipient login:</br>
+    <input type="text" name="recipient" />
+     </br>Message:</br>
+    <input type="text" name="text" /></br>
 
-             <br/>
   <input type="submit" value="submit" />
 </form>
 </body>

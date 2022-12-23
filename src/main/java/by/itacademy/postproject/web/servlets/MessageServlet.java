@@ -34,9 +34,12 @@ public class MessageServlet extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
         List<PostedMessageDTO> user = service.getUserSendMessage(ActionSession.getParameterValue(req, "user").getLogin());
-        user.forEach(s-> writer.write("<p>"+s.getText()+"</p>"));
-        writer.write("<p> All messages </p>");
-        service.getSendMessage().forEach((key, value) -> writer.write("<p>" + key + "</p>"));
+        req.setAttribute("chats",user);
+        req.getRequestDispatcher("/pages/user_messages.jsp").forward(req,resp);
+
+        user.forEach(s-> writer.write("<p>"+s.getText() +"</p>"));
+//        writer.write("<p> All messages </p>");
+//        service.getSendMessage().forEach((key, value) -> writer.write("<p>" + key + "</p>"));
 
     }
 

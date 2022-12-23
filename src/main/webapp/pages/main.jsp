@@ -9,8 +9,8 @@
 <body>
 <a href="${pageContext.request.contextPath}/ui/signUp">Регистрация</a><br><br>
 <a href="${pageContext.request.contextPath}/ui/signIn">Вход</a><br><br>
-<a href="${pageContext.request.contextPath}/ui/user/message">
-Отправить письмо</a>
+<a href="${pageContext.request.contextPath}/ui/user/message">Отправить письмо</a>
+<a href="${pageContext.request.contextPath}/ui/user/chats">chat</a>
 
 </body>
 
