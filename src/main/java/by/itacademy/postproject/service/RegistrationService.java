@@ -1,6 +1,7 @@
 package by.itacademy.postproject.service;
 
 import by.itacademy.postproject.dao.api.IRegisteredUsersDAO;
+import by.itacademy.postproject.dto.ClientType;
 import by.itacademy.postproject.dto.RegisteredUsersDTO;
 import by.itacademy.postproject.dto.UserDTO;
 import by.itacademy.postproject.service.api.IRegistrationService;
@@ -35,6 +36,11 @@ public class RegistrationService implements IRegistrationService {
         return this.dao.getCountOfUser();
     }
 
+    @Override
+    public ClientType getClientType(String login) {
+        return this.dao.getClientType(login);
+    }
+
     private void validate(UserDTO userDTO){
         String login = userDTO.getLogin();
 
@@ -42,6 +48,16 @@ public class RegistrationService implements IRegistrationService {
             throw new IllegalArgumentException("Логин не введен");
         }
 
+        if(!login.matches("\\b([a-zA-Z\\d]+\\.?[a-zA-Z\\d]+)+")){
+            throw new IllegalArgumentException("Wrong format");
+//            \b([a-zA-Z\d]+\.?[a-zA-Z\d]+)+(@gm.com){1}
+        }
+        if( login.length()<6 ) {
+            throw new IllegalArgumentException("login can not be less then 6 symbols");
+        }
+        if( login.length()>30 ) {
+            throw new IllegalArgumentException("login cannot be longer then 30 symbols");
+        }
         if (dao.isExist(login)){
             throw new IllegalArgumentException("Пользователь с таким логином уже зарегистрирован");
         }
@@ -51,8 +67,9 @@ public class RegistrationService implements IRegistrationService {
         if (password == null || password.isBlank()){
             throw new IllegalArgumentException("Пароль не введен");
         }
-
-        //можно доп.проверить пароль на кол-во символов
+        if (password.length()<8){
+            throw new IllegalArgumentException("Password can not be less then 8 symbols");
+        }
 
         String fullName = userDTO.getFullName();
 

@@ -7,20 +7,20 @@ public class RegisteredUsersDTO {
     private UserDTO user;
     private LocalDate dateRegistration;
     //  change line 10 (was boolean) and  add isAdmin line 11
-    private String userRole;
+    private ClientType userRole;
     private static boolean isAdmin = false;
 
     public RegisteredUsersDTO(UserDTO user, LocalDate dateRegistration) {
         this.user = user;
         this.dateRegistration = dateRegistration;
-        this.userRole = "user";
+        this.userRole = ClientType.USER;
     }
 
 
     public RegisteredUsersDTO(UserDTO user) {
         this.user = user;
         this.dateRegistration = LocalDate.now();
-        this.userRole = "user";
+        this.userRole = ClientType.USER;
     }
 
     public UserDTO getUser() {
@@ -40,16 +40,16 @@ public class RegisteredUsersDTO {
     }
 
     // change method : lines 42-44
-    public String getUserRole() {
+    public ClientType getUserRole() {
         return userRole;
     }
 // change method : lines 45-51
-    public void setAdmin() {
+    public void setUserRole() {
         if (isAdmin == false){
-            userRole = "admin";
+            userRole = ClientType.ADMINISTRATOR;
              isAdmin = true;
         }
-        else userRole = "user";
+        else userRole = ClientType.USER;
     }
 
     @Override

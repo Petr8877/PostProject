@@ -1,6 +1,6 @@
-package by.itacademy.postproject.web;
+package by.itacademy.postproject.web.servlets;
 
-import by.itacademy.postproject.dto.LogInDTO;
+import by.itacademy.postproject.dto.LoginDTO;
 import by.itacademy.postproject.dto.UserSessionDTO;
 import by.itacademy.postproject.service.api.ILogInService;
 import by.itacademy.postproject.service.factory.LogInServiceSingleton;
@@ -41,21 +41,18 @@ public class LogInServlet extends HttpServlet {
             String login = (logins == null) ? null : logins[0];
             String password = (passwords == null) ? null : passwords[0];
 
-            LogInDTO logInDTO = new LogInDTO(login,password);
+            LoginDTO logInDTO = new LoginDTO(login,password);
             if(service.checkLogin(logInDTO)){
-                UserSessionDTO userSessionDTO = new UserSessionDTO(logInDTO.getLogin());
-                ActionSession.saveSession(req,"user",userSessionDTO);
+                UserSessionDTO userSessionDTO = new  UserSessionDTO(login,service.getClientType(login));
+                ActionSession.saveSession(req,"user", userSessionDTO);
+//                ActionSession.saveSession(req,"userType",userSessionDTO.getClientType());
 
             }
-
-
-
-
-//            ActionSession.saveSession(req,PARAM_NAME_PASSWORD,logInDTO.getPassword());
-
             writer.write("<p> Authorization is successful </p>");
+
         } catch (Exception e){
             writer.write("<p>"+e.getMessage()+"</p>");
         }
     }
+//            req.getRequestDispatcher("/pages/main.jsp").forward(req,resp);
 }

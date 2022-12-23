@@ -1,6 +1,7 @@
 package by.itacademy.postproject.service.factory;
 
 import by.itacademy.postproject.dao.factory.MessageDAOSingleton;
+import by.itacademy.postproject.dao.factory.RegisteredUsersDAOSingleton;
 import by.itacademy.postproject.service.MessageService;
 import by.itacademy.postproject.service.api.IMessageService;
 
@@ -14,7 +15,8 @@ public class MessageServiceSingleton {
         if(instance == null){
             synchronized (MessageService.class){
                 if(instance == null){
-                    instance = new MessageService(MessageDAOSingleton.getInstance());
+                    instance = new MessageService(MessageDAOSingleton.getInstance(),
+                            RegistrationServiceSingleton.getInstance());
                 }
             }
         }

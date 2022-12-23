@@ -1,14 +1,14 @@
 package by.itacademy.postproject.dao.api;
 
 
-import by.itacademy.postproject.dto.MessageDTO;
+import by.itacademy.postproject.dto.PostedMessageDTO;
 
 import java.util.List;
 import java.util.Map;
 
 public interface IMessageDAO {
-    void save(MessageDTO messageDTO);
-    Map<String,List<MessageDTO>>  getSendMessage();
+    void save(PostedMessageDTO messageDTO);
+    Map<String,List<PostedMessageDTO>>  getSendMessage();
 
-    List<MessageDTO> getUserSendMessage(String login);
+    List<PostedMessageDTO> getUserSendMessage(String login);
 }

@@ -1,14 +1,14 @@
 package by.itacademy.postproject.service.api;
 
-import by.itacademy.postproject.dto.MessageDTO;
+import by.itacademy.postproject.dto.PostedMessageDTO;
 
 import java.util.List;
 import java.util.Map;
 
 public interface IMessageService {
 
-    void sendMessage(MessageDTO messageDTO);
-    Map<String, List<MessageDTO>> getSendMessage();
+    void sendMessage(PostedMessageDTO messageDTO);
+    Map<String, List<PostedMessageDTO>> getSendMessage();
 
-    List<MessageDTO> getUserSendMessage(String login);
+    List<PostedMessageDTO> getUserSendMessage(String login);
 }

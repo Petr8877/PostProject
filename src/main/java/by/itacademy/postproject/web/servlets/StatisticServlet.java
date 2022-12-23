@@ -1,4 +1,4 @@
-package by.itacademy.postproject.web;
+package by.itacademy.postproject.web.servlets;
 
 import by.itacademy.postproject.service.api.IStatisticService;
 import by.itacademy.postproject.service.factory.StatisticServiceSingleton;
@@ -27,12 +27,14 @@ public class StatisticServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
 
-
         PrintWriter writer = resp.getWriter();
-
-        writer.write("<p> count of active users"+  service.getCountOfActiveUsers() + "</p>");
-        writer.write("<p> count of users "+  service.getCountOfUsers() + "</p>");
-        writer.write("<p> count of messages "+  service.getCountOfMessages() + "</p>");
+//        if (req.getSession().getAttribute("user").equals("Admin")) {
+            writer.write("<p> count of active users" + service.getCountOfActiveUsers() + "</p>");
+            writer.write("<p> count of users " + service.getCountOfUsers() + "</p>");
+            writer.write("<p> count of messages " + service.getCountOfMessages() + "</p>");
+//        } else {
+//            throw  new IllegalArgumentException("<p> Access is denied </p>");
+//        }
     }
 }
 
