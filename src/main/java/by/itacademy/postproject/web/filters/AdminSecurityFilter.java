@@ -30,7 +30,7 @@ public class AdminSecurityFilter implements Filter {
                 filterChain.doFilter(request,response);
             }
         }else {
-            response.sendRedirect(contextPath+"/signIn");
+            response.sendRedirect(contextPath+"/ui/signIn");
         }
     }
 

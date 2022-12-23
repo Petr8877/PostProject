@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "UserMessagesServlet", urlPatterns = "/ui/user/chats")
-public class UserMessagesServlet extends HttpServlet {
+@WebServlet(name = "UserChatServlet", urlPatterns = "/ui/user/chats")
+public class UserChatServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req,resp);
