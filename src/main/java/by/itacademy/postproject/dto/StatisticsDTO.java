@@ -12,6 +12,10 @@ public class StatisticsDTO {
         this.activeUsers.add(login);
     }
 
+    public void removeActiveUser(String login) {
+        this.activeUsers.remove(login);
+    }
+
     public Set<String> getActiveUsers() {
         return activeUsers;
     }

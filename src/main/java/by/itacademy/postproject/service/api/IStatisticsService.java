@@ -12,6 +12,8 @@ public interface IStatisticsService {
 
     void addActiveUsers(String login);
 
+    void removeActiveUser(String login);
+
     void setCountMessage();
 
     //на рассмотрение

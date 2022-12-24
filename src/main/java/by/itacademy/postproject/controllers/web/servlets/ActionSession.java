@@ -23,6 +23,7 @@ public class ActionSession {
     public static void saveSession(HttpServletRequest request, String key, String value) {
         HttpSession session = request.getSession();
         session.setAttribute(key, value);
+        session.setMaxInactiveInterval(300);
     }
 
 

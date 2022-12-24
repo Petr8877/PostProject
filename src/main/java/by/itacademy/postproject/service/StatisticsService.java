@@ -30,6 +30,11 @@ public class StatisticsService implements IStatisticsService {
     }
 
     @Override
+    public void removeActiveUser(String login) {
+        dto.removeActiveUser(login);
+    }
+
+    @Override
     public void setCountMessage() {
         dto.setCountMessage();
     }
