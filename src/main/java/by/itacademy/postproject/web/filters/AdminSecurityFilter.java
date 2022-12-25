@@ -28,6 +28,8 @@ public class AdminSecurityFilter implements Filter {
 
             if (user.getClientType().equals(ClientType.ADMINISTRATOR)){
                 filterChain.doFilter(request,response);
+            }else {
+                response.sendRedirect(contextPath+"/ui/signIn");
             }
         }else {
             response.sendRedirect(contextPath+"/ui/signIn");

@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Registration page</title>
+    <title></title>
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 
 </c:forEach>
 
-    <a href="index.jsp">main</a>
+    <a href="${pageContext.request.contextPath}/ui/">main</a>
 
 </form>
 </body>

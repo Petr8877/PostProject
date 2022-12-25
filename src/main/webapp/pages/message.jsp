@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>Registration page</title>
+    <title></title>
 </head>
 <body>
 <form action= "${pageContext.request.contextPath}/api/message" method="POST">

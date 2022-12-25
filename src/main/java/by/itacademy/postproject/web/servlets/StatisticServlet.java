@@ -1,5 +1,6 @@
 package by.itacademy.postproject.web.servlets;
 
+import by.itacademy.postproject.dto.StatisticDTO;
 import by.itacademy.postproject.service.api.IStatisticService;
 import by.itacademy.postproject.service.factory.StatisticServiceSingleton;
 
@@ -26,12 +27,18 @@ public class StatisticServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
+        StatisticDTO statistic = service.getStatistic();
 
-        PrintWriter writer = resp.getWriter();
+        req.setAttribute("activeUsers",statistic.getActiveUsers());
+        req.setAttribute("users",statistic.getCountOfAllUsers());
+        req.setAttribute("messages",statistic.getCountOfMessages());
+        req.getRequestDispatcher("/pages/secured/statistics.jsp").forward(req,resp);
+
+//        PrintWriter writer = resp.getWriter();
 //        if (req.getSession().getAttribute("user").equals("Admin")) {
-            writer.write("<p> count of active users" + service.getCountOfActiveUsers() + "</p>");
-            writer.write("<p> count of users " + service.getCountOfUsers() + "</p>");
-            writer.write("<p> count of messages " + service.getCountOfMessages() + "</p>");
+//            writer.write("<p> count of active users" + service.getCountOfActiveUsers() + "</p>");
+//            writer.write("<p> count of users " + service.getCountOfUsers() + "</p>");
+//            writer.write("<p> count of messages " + service.getCountOfMessages() + "</p>");
 //        } else {
 //            throw  new IllegalArgumentException("<p> Access is denied </p>");
 //        }

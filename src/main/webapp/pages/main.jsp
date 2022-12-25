@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Index</title>
+    <title></title>
 </head>
 <body>
 <a href="${pageContext.request.contextPath}/ui/signUp">Регистрация</a><br><br>
