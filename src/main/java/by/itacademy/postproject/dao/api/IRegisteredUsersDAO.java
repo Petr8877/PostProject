@@ -11,8 +11,10 @@ public interface IRegisteredUsersDAO {
 
     RegisteredUsersEntity getUser(String login);
 
-
     ClientType getClientType(String login);
+
+    int getCountAllUser();
+
 
 }
 

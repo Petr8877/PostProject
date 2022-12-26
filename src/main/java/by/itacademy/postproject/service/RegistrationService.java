@@ -85,4 +85,9 @@ public class RegistrationService implements IRegistrationService {
     public ClientType getClientType(String login) {
         return this.dao.getClientType(login);
     }
+
+    @Override
+    public int getCountAllUser() {
+        return dao.getCountAllUser();
+    }
 }

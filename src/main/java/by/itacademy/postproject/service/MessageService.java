@@ -20,8 +20,8 @@ public class MessageService implements IMessageService {
 
     public MessageService(IMessageDAO dao, IStatisticsService statisticsService, IRegistrationService registrationService ) {
         this.dao = dao;
-        this.statisticsService = StatisticsServiceSingleton.getInstance();
-        this.registrationService = RegistrationServiceSingleton.getInstance();
+        this.statisticsService = statisticsService;
+        this.registrationService = registrationService;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class MessageService implements IMessageService {
         if (registrationService.isExist(messageDTO.getRecipient())) {
             validate(messageDTO);
             dao.save(new SavedMessageEntity(messageDTO));
-            statisticsService.setCountMessage();
+            statisticsService.addCountMessage();
         } else throw new IllegalArgumentException("such recipient is not registered");
 
     }

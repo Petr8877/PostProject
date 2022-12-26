@@ -11,7 +11,10 @@ public interface IRegistrationService {
     boolean isExist(String login);
 
     RegisteredUsersEntity getUser(String login);
+
     ClientType getClientType(String login);
+
+    int getCountAllUser();
 
 
 }
