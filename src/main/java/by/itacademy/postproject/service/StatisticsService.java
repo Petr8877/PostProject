@@ -11,7 +11,7 @@ public class StatisticsService implements IStatisticsService {
 
     private final AtomicInteger countActiveUser;
     private final AtomicInteger countMessage;
-    private IRegistrationService registrationService;
+    private final IRegistrationService registrationService;
 
     public StatisticsService(IRegistrationService registrationService) {
         this.countActiveUser = new AtomicInteger();
