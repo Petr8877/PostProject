@@ -26,7 +26,7 @@ public class ActionSession {
         public static void saveSession (HttpServletRequest request, String key,UserSessionDTO userSessionDTO){
             HttpSession session = request.getSession();
             session.setAttribute(key,userSessionDTO);
-        session.setMaxInactiveInterval(300);
+            session.setMaxInactiveInterval(600);
     }
 
 

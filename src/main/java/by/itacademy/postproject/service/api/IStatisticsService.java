@@ -2,19 +2,19 @@ package by.itacademy.postproject.service.api;
 
 import by.itacademy.postproject.dto.StatisticsDTO;
 
-import java.util.Set;
-
 public interface IStatisticsService {
 
-    Set<String> getActiveUsers();
+   // Set<UserSessionDTO> getActiveUsers();
 
     int getCountMessage();
 
-    void addActiveUsers(String login);
+    int getActiveUsers();
 
-    void removeActiveUser(String login);
+    void addActiveUsers();
 
-    void setCountMessage();
+    void removeActiveUser();
+
+    void addCountMessage();
 
     //на рассмотрение
     StatisticsDTO getAllStatistics();

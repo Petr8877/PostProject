@@ -1,5 +1,6 @@
 package by.itacademy.postproject.controllers.web.servlets.servlrtsJSP;
 
+import by.itacademy.postproject.dto.StatisticsDTO;
 import by.itacademy.postproject.service.api.IStatisticsService;
 import by.itacademy.postproject.service.factory.StatisticsServiceSingleton;
 
@@ -13,15 +14,16 @@ import java.util.Set;
 
 @WebServlet(name = "StatisticsPage", urlPatterns = "/ui/admin/statistics")
 public class StatisticsPage extends HttpServlet {
+    private final IStatisticsService service;
+
+    public StatisticsPage() {
+        this.service = StatisticsServiceSingleton.getInstance();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        IStatisticsService service = StatisticsServiceSingleton.getInstance();
-        Set<String> activeUsers = service.getActiveUsers();
-        int users = activeUsers.size();
-        int messages = service.getCountMessage();
-        req.setAttribute("users", users);
-        req.setAttribute("messages", messages);
+        StatisticsDTO allStatistics = service.getAllStatistics();
+        req.setAttribute("statistic", allStatistics);
         req.getRequestDispatcher("/views/Statistics.jsp").forward(req, resp);
     }
 }

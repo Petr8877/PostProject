@@ -1,31 +1,28 @@
 package by.itacademy.postproject.dto;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 public class StatisticsDTO {
-    private final Set<String> activeUsers=new HashSet<>();
+    private int countActiveUser;
+    private int countAllUser;
     private int countMessage;
 
-    public void addActiveUsers(String login) {
-        this.activeUsers.add(login);
+    public StatisticsDTO(int countActiveUser, int countAllUser, int countMessage) {
+        this.countActiveUser = countActiveUser;
+        this.countAllUser = countAllUser;
+        this.countMessage = countMessage;
     }
 
-    public void removeActiveUser(String login) {
-        this.activeUsers.remove(login);
+    public int getCountActiveUser() {
+        return countActiveUser;
     }
 
-    public Set<String> getActiveUsers() {
-        return activeUsers;
+    public int getCountAllUser() {
+        return countAllUser;
     }
 
     public int getCountMessage() {
         return countMessage;
-    }
-
-    public void setCountMessage() {
-        this.countMessage++;
     }
 
     @Override
@@ -33,17 +30,20 @@ public class StatisticsDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StatisticsDTO that = (StatisticsDTO) o;
-        return countMessage == that.countMessage && Objects.equals(activeUsers, that.activeUsers);
+        return countActiveUser == that.countActiveUser
+                && countAllUser == that.countAllUser
+                && countMessage == that.countMessage;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(activeUsers, countMessage);
+        return Objects.hash(countActiveUser, countAllUser, countMessage);
     }
 
     @Override
     public String toString() {
-        return "Number of active users in the application: " + activeUsers.size() + "\n" +
+        return "Number of active users in the application: " + countActiveUser + "\n" +
+                "Number of all registered users in the application: " + countAllUser + "\n" +
                 "Number of sent messages in the application: " + countMessage;
     }
 }

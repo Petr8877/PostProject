@@ -41,5 +41,8 @@ public class RegisteredUsersDAO implements IRegisteredUsersDAO {
         return registeredUsers.get(login).getUserRole();
     }
 
-
+    @Override
+    public int getCountAllUser() {
+        return registeredUsers.size();
+    }
 }

@@ -1,6 +1,5 @@
 package by.itacademy.postproject.controllers.web.listeners;
 
-
 import by.itacademy.postproject.dto.UserSessionDTO;
 import by.itacademy.postproject.service.api.IStatisticsService;
 import by.itacademy.postproject.service.factory.StatisticsServiceSingleton;
@@ -23,7 +22,7 @@ public class SessionListeners implements HttpSessionListener, HttpSessionAttribu
                 UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
                 if(user != null){
                     IStatisticsService service = StatisticsServiceSingleton.getInstance();
-                    service.removeActiveUser(user.getLogin());
+                    service.removeActiveUser();
                 }
                 break;
             }
@@ -34,7 +33,7 @@ public class SessionListeners implements HttpSessionListener, HttpSessionAttribu
     public void attributeAdded(HttpSessionBindingEvent event) {
         if(event.getName().equals("user")){
             IStatisticsService service = StatisticsServiceSingleton.getInstance();
-            service.addActiveUsers((String)event.getValue());
+            service.addActiveUsers();
         }
     }
 
