@@ -1,6 +1,7 @@
 package by.itacademy.postproject.controllers.web.servlets;
 
 import by.itacademy.postproject.dto.LogInDTO;
+import by.itacademy.postproject.dto.UserSessionDTO;
 import by.itacademy.postproject.service.api.ILogInService;
 import by.itacademy.postproject.service.factory.LogInServiceSingleton;
 
@@ -49,8 +50,9 @@ public class LogInServlet extends HttpServlet {
 
             LogInDTO log = new LogInDTO(login, password);
             service.signIn(log);
+            UserSessionDTO userSessionDTO = new  UserSessionDTO(login,service.getClientType(login));
 
-            ActionSession.saveSession(req, "user", login);
+            ActionSession.saveSession(req, "user", userSessionDTO);
             writer.write("<p> Authorization is successful </p>");
 
         } catch (IllegalArgumentException exception) {

@@ -51,8 +51,9 @@ public class MessageServlet extends HttpServlet {
                 throw new IllegalArgumentException("No message to send to recipient");
             }
 
-            MessageDTO messageDTO = new MessageDTO(ActionSession.getParameterValue(req, "user"), recipient, text);
+            MessageDTO messageDTO = new MessageDTO(ActionSession.getParameterValue(req, "user").getLogin(), recipient, text);
             service.sendMessage(messageDTO);
+
 
             writer.write("<p> Message sent </p>");
         } catch (IllegalArgumentException exception) {
@@ -66,8 +67,11 @@ public class MessageServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
 
-        List<SavedMessageEntity> messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user"));
+        List<SavedMessageEntity> messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user").getLogin());
         PrintWriter writer = resp.getWriter();
+        req.setAttribute("chats",messageList);
+        req.getRequestDispatcher("/views/MessageChats.jsp").forward(req,resp);
+
         for (SavedMessageEntity messageEntity : messageList) {
             writer.write("<p>" + messageEntity + "</p>");
         }

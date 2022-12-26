@@ -7,7 +7,7 @@
   <label for="login">Введите логин:</label>
   <input type="text" id="login" name="login"><br><br>
   <label for="password">Введите пароль:</label>
-  <input type="text" id="password" name="password"><br><br>
+  <input type="password" id="password"  name="password"><br><br>
     <label for="fullName">Введите ФИО:</label>
     <input type="text" id="fullName" name="fullName"><br><br>
       <label for="birthdate">Введите дату рождения (ГГГГ-ММ-ДД):</label>

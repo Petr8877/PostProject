@@ -1,6 +1,7 @@
 package by.itacademy.postproject.controllers.web.listeners;
 
 
+import by.itacademy.postproject.dto.UserSessionDTO;
 import by.itacademy.postproject.service.api.IStatisticsService;
 import by.itacademy.postproject.service.factory.StatisticsServiceSingleton;
 
@@ -19,10 +20,10 @@ public class SessionListeners implements HttpSessionListener, HttpSessionAttribu
         while (attributeNames.hasMoreElements()){
             String element = attributeNames.nextElement();
             if(Objects.equals(element, "user")){
-                String user = (String) session.getAttribute("user");
+                UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
                 if(user != null){
                     IStatisticsService service = StatisticsServiceSingleton.getInstance();
-                    service.removeActiveUser(user);
+                    service.removeActiveUser(user.getLogin());
                 }
                 break;
             }

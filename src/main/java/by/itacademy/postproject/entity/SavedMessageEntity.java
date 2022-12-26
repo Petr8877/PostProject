@@ -18,6 +18,12 @@ public class SavedMessageEntity {
     public MessageDTO getMessageDTO() {
         return messageDTO;
     }
+    public String getText(){
+        return messageDTO.getText();
+    }
+    public String getSender(){
+        return  messageDTO.getSender();
+    }
 
     public LocalDateTime getTimeMessage() {
         return timeMessage;

@@ -8,9 +8,9 @@
 <body>
 <h1>Login page</h1>
 <form action = ${path} method = "POST">
-Login: <input name="login"/>
+Login: <input type="text" name="login"/>
 <br></br>
-Password: <input name="password"/>
+Password: <input type="password" name="password" />
 <br></br>
 <input type="submit" value="Sign In"/>
 </form>

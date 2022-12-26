@@ -8,20 +8,20 @@ import java.util.Objects;
 public class RegisteredUsersEntity {
     private UserDTO user;
     private LocalDate dateRegistration;
-    private String userRole;
+    private ClientType userRole;
     private static boolean isAdmin = false;
 
     public RegisteredUsersEntity(UserDTO user, LocalDate dateRegistration) {
         this.user = user;
         this.dateRegistration = dateRegistration;
-        this.userRole = "user";
+        this.userRole = ClientType.USER;
     }
 
 
     public RegisteredUsersEntity(UserDTO user) {
         this.user = user;
         this.dateRegistration = LocalDate.now();
-        this.userRole = "user";
+        this.userRole = ClientType.USER;
     }
 
     public UserDTO getUser() {
@@ -40,16 +40,16 @@ public class RegisteredUsersEntity {
         this.dateRegistration = dateRegistration;
     }
 
-    public String getUserRole() {
+    public ClientType getUserRole() {
         return userRole;
     }
 
     public void setAdmin() {
-        if (!isAdmin){
-            userRole = "admin";
-             isAdmin = true;
+        if (isAdmin == false){
+            userRole = ClientType.ADMINISTRATOR;
+            isAdmin = true;
         }
-        else userRole = "user";
+        else userRole = ClientType.USER;
     }
 
     @Override

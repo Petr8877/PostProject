@@ -1,6 +1,7 @@
 package by.itacademy.postproject.service;
 
 import by.itacademy.postproject.dao.api.IRegisteredUsersDAO;
+import by.itacademy.postproject.entity.ClientType;
 import by.itacademy.postproject.entity.RegisteredUsersEntity;
 import by.itacademy.postproject.dto.UserDTO;
 import by.itacademy.postproject.service.api.IRegistrationService;
@@ -79,5 +80,9 @@ public class RegistrationService implements IRegistrationService {
         }
 
 
+    }
+    @Override
+    public ClientType getClientType(String login) {
+        return this.dao.getClientType(login);
     }
 }

@@ -18,11 +18,12 @@ public class MessageChatsPage extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        IMessageService service = MessageServiceSingleton.getInstance();
-        Map<String, List<SavedMessageEntity>> message = service.getMessage();
-        String str = (String) req.getSession().getAttribute("user");
-        List<SavedMessageEntity> list = message.get(str);
-        req.setAttribute("list", list);
-        req.getRequestDispatcher("/views/MessageChats.jsp").forward(req, resp);
+//        IMessageService service = MessageServiceSingleton.getInstance();
+//        Map<String, List<SavedMessageEntity>> message = service.getMessage();
+//        String str = (String) req.getSession().getAttribute("user");
+//        List<SavedMessageEntity> list = message.get(str);
+//        req.setAttribute("list", list);
+//        req.getRequestDispatcher("/views/MessageChats.jsp").forward(req, resp);
+        req.getRequestDispatcher("/api/message").forward(req,resp);
     }
 }

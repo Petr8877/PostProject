@@ -1,5 +1,8 @@
 package by.itacademy.postproject.controllers.web.filters;
 
+import by.itacademy.postproject.dto.UserSessionDTO;
+import by.itacademy.postproject.entity.ClientType;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -18,14 +21,18 @@ public class AdminSecurityFilter implements Filter {
         String contextPath = req.getContextPath();
         HttpSession session = req.getSession();
         if ((session != null) && (session.getAttribute("user") != null)) {
-            if (session.getAttribute("user").equals("Admin")) {
-                chain.doFilter(request, response);
-            } else {
-                throw new IllegalArgumentException("No access");
+            UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
+
+            if (user.getClientType().equals(ClientType.ADMINISTRATOR)){
+                chain.doFilter(request,response);
+            }else {
+                res.sendRedirect(contextPath+"/ui/signIn");
             }
-        } else {
-            res.sendRedirect(contextPath + "/");
+
+        }else {
+            res.sendRedirect(contextPath + "/ui/signIn");
         }
+
     }
 
     @Override

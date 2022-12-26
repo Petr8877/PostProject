@@ -1,6 +1,7 @@
 package by.itacademy.postproject.dao;
 
 import by.itacademy.postproject.dao.api.IRegisteredUsersDAO;
+import by.itacademy.postproject.entity.ClientType;
 import by.itacademy.postproject.entity.RegisteredUsersEntity;
 import by.itacademy.postproject.dto.UserDTO;
 
@@ -16,7 +17,6 @@ public class RegisteredUsersDAO implements IRegisteredUsersDAO {
         UserDTO admin = new UserDTO("Administrator", "12345678",
                 "Иванов И.И", LocalDate.of(1990, 12, 12));
         RegisteredUsersEntity adminReg = new RegisteredUsersEntity(admin, LocalDate.of(2022, 12, 12));
-//   изменила строку 20
         adminReg.setAdmin();
         this.registeredUsers.put(adminReg.getUser().getLogin(), adminReg);
     }
@@ -34,6 +34,11 @@ public class RegisteredUsersDAO implements IRegisteredUsersDAO {
     @Override
     public RegisteredUsersEntity getUser(String login) {
         return this.registeredUsers.get(login);
+    }
+
+    @Override
+    public ClientType getClientType(String login) {
+        return registeredUsers.get(login).getUserRole();
     }
 
 

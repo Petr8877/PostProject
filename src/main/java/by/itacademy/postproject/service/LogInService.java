@@ -1,6 +1,7 @@
 package by.itacademy.postproject.service;
 
 import by.itacademy.postproject.dto.LogInDTO;
+import by.itacademy.postproject.entity.ClientType;
 import by.itacademy.postproject.service.api.ILogInService;
 import by.itacademy.postproject.service.api.IRegistrationService;
 
@@ -33,5 +34,9 @@ public class LogInService implements ILogInService {
             throw new IllegalArgumentException("Wrong password entered");
         }
 
+    }
+    @Override
+    public ClientType getClientType(String login) {
+        return registrationService.getClientType(login);
     }
 }
