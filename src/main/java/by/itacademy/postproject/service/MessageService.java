@@ -4,7 +4,9 @@ import by.itacademy.postproject.dao.api.IMessageDAO;
 import by.itacademy.postproject.dto.MessageDTO;
 import by.itacademy.postproject.entity.SavedMessageEntity;
 import by.itacademy.postproject.service.api.IMessageService;
+import by.itacademy.postproject.service.api.IRegistrationService;
 import by.itacademy.postproject.service.api.IStatisticsService;
+import by.itacademy.postproject.service.factory.RegistrationServiceSingleton;
 import by.itacademy.postproject.service.factory.StatisticsServiceSingleton;
 
 import java.util.List;
@@ -14,17 +16,22 @@ public class MessageService implements IMessageService {
 
     private final IMessageDAO dao;
     private final IStatisticsService statisticsService;
+    private IRegistrationService registrationService;
 
-    public MessageService(IMessageDAO dao, IStatisticsService statisticsService) {
+    public MessageService(IMessageDAO dao, IStatisticsService statisticsService, IRegistrationService registrationService ) {
         this.dao = dao;
         this.statisticsService = StatisticsServiceSingleton.getInstance();
+        this.registrationService = RegistrationServiceSingleton.getInstance();
     }
 
     @Override
     public void sendMessage(MessageDTO messageDTO) {
-        validate(messageDTO);
-        dao.save(new SavedMessageEntity(messageDTO));
-        statisticsService.setCountMessage();
+        if (registrationService.isExist(messageDTO.getRecipient())) {
+            validate(messageDTO);
+            dao.save(new SavedMessageEntity(messageDTO));
+            statisticsService.setCountMessage();
+        } else throw new IllegalArgumentException("such recipient is not registered");
+
     }
 
     @Override
@@ -34,7 +41,13 @@ public class MessageService implements IMessageService {
 
     @Override
     public List<SavedMessageEntity> getAllUserMessage(String login) {
-        return dao.getAllUserMessage(login);
+        List<SavedMessageEntity> userSendMessage;
+        try {
+            userSendMessage = dao.getAllUserMessage(login);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("there is no message");
+        }
+        return userSendMessage;
     }
 
     private void validate(MessageDTO message){
