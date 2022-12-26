@@ -7,7 +7,7 @@
 <p></p>
 <body>
 <a href="${pageContext.request.contextPath}/ui/singUp">Регистрация</a><br><br>
-<a href="${pageContext.request.contextPath}/ui/login">Вход</a><br><br>
+<a href="${pageContext.request.contextPath}/ui/signIn">Вход</a><br><br>
 <a href="${pageContext.request.contextPath}/ui/user/message">Отправить письмо</a>
 </body>
 </html>

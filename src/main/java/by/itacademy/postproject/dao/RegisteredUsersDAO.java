@@ -13,7 +13,7 @@ public class RegisteredUsersDAO implements IRegisteredUsersDAO {
     private Map<String, RegisteredUsersEntity> registeredUsers = new HashMap<>();
 
     {
-        UserDTO admin = new UserDTO("Admin", "123qwe",
+        UserDTO admin = new UserDTO("Administrator", "12345678",
                 "Иванов И.И", LocalDate.of(1990, 12, 12));
         RegisteredUsersEntity adminReg = new RegisteredUsersEntity(admin, LocalDate.of(2022, 12, 12));
 //   изменила строку 20
