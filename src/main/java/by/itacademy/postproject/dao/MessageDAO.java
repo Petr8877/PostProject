@@ -11,15 +11,11 @@ public class MessageDAO implements IMessageDAO {
 
     @Override
     public void save(SavedMessageEntity messageEntity) {
-        List<SavedMessageEntity> list;
-        String loginSender = messageEntity.getMessageDTO().getSender();
-        if (usersMessages.containsKey(loginSender)){
-            list = usersMessages.get(loginSender);
-        } else {
-            list = new ArrayList<>();
-        }
+        String recipient = messageEntity.getMessageDTO().getRecipient();
+        List<SavedMessageEntity> list = usersMessages.containsKey(recipient) ?
+                usersMessages.get(recipient) : new ArrayList<>();
         list.add(messageEntity);
-        usersMessages.put(loginSender, list);
+        usersMessages.put(recipient,list);
     }
 
     @Override
