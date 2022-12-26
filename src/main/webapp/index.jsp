@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>index</title>
 </head>
 <body>
       <jsp:forward page="/pages/main.jsp"/>

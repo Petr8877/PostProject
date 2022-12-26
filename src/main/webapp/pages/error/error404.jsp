@@ -1,7 +1,7 @@
 <%@ page isErrorPage="true" contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Error 500 Page</title>
+    <title>Error 404 Page</title>
 </head>
 <body>
     Request from ${pageContext.errorData.requestURI} is failed <br/>

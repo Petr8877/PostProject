@@ -28,7 +28,14 @@ public class MessageDAO implements IMessageDAO {
 
     @Override
     public List<PostedMessageDTO> getUserSendMessage(String login) {
+//        if(isRecipientExist(login)){
+//            throw new IllegalArgumentException("No messages");
+//        }
+
         return sendMessageDAO.get(login);
+    }
+    private boolean isRecipientExist(String login){
+        return sendMessageDAO.containsKey(login);
     }
 
 

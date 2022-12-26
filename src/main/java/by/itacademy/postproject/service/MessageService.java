@@ -11,6 +11,7 @@ import java.util.Map;
 public class MessageService implements IMessageService {
     private IMessageDAO messageDAO;
     private IRegistrationService registrationService;
+
     public MessageService(IMessageDAO messageDAO, IRegistrationService registrationService) {
         this.messageDAO = messageDAO;
         this.registrationService = registrationService;
@@ -32,6 +33,12 @@ public class MessageService implements IMessageService {
 
     @Override
     public List<PostedMessageDTO> getUserSendMessage(String login) {
-        return messageDAO.getUserSendMessage(login);
+        List<PostedMessageDTO> userSendMessage;
+        try {
+            userSendMessage = messageDAO.getUserSendMessage(login);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("no message", e);
+        }
+        return userSendMessage;
     }
 }

@@ -12,7 +12,7 @@ public class ActiveUserListener implements HttpSessionAttributeListener {
     @Override
     public void attributeAdded(HttpSessionBindingEvent event) {
             if (event.getName().equals("user")){
-                StatisticServiceSingleton.getInstance().setCountOfActiveUsers();
+                StatisticServiceSingleton.getInstance().addActiveUser();
         }
     }
 
@@ -25,7 +25,7 @@ public class ActiveUserListener implements HttpSessionAttributeListener {
     @Override
     public void attributeReplaced(HttpSessionBindingEvent event) {
         if (event.getName().equals("user")){
-            StatisticServiceSingleton.getInstance().setCountOfActiveUsers();
+            StatisticServiceSingleton.getInstance().addActiveUser();
         }
     }
 

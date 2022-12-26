@@ -11,10 +11,8 @@
 
 
  <p> "Count of active users ${activeUsers} " </p>
- <p> "Count of users ${users} " </p>
- <p> "Count of messages ${messages} " </p>
-
-
+ <p> "Count of users        ${users} " </p>
+ <p> "Count of messages     ${messages} " </p>
 
 
     <a href="index.jsp">main</a>

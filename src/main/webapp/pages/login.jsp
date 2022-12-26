@@ -6,7 +6,7 @@
 
 <html>
 <head>
-    <title></title>
+    <title>Login</title>
 </head>
 <body>
 <form action= "${pageContext.request.contextPath}/api/login" method="POST">

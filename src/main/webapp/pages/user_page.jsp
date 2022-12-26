@@ -5,15 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Main</title>
+    <title>user page</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/ui/signUp"/>
-        <input type="submit" name="sub" value="registration"/>
-</form>
-<form action="${pageContext.request.contextPath}/ui/signIn"/>
-        <input type="submit" name="sub" value="log in"/>
-</form>
 
 <form action="${pageContext.request.contextPath}/ui/user/chats"/>
         <input type="submit" name="sub" value="chat"/>
@@ -22,7 +16,7 @@
         <input type="submit" name="sub" value="send message"/>
 </form>
 
-
-
+<form action="${pageContext.request.contextPath}/ui/"/>
+<input type="submit" name="sub" value="send message"/>
+</form>
 </body>
-

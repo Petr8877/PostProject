@@ -36,17 +36,17 @@ public class LogInServlet extends HttpServlet {
         String[] passwords = parameterMap.get(PARAM_NAME_PASSWORD);
 
         PrintWriter writer = resp.getWriter();
+        String page;
 
         try {
             String login = (logins == null) ? null : logins[0];
             String password = (passwords == null) ? null : passwords[0];
 
             LoginDTO logInDTO = new LoginDTO(login,password);
+
             if(service.checkLogin(logInDTO)){
                 UserSessionDTO userSessionDTO = new  UserSessionDTO(login,service.getClientType(login));
                 ActionSession.saveSession(req,"user", userSessionDTO);
-//                ActionSession.saveSession(req,"userType",userSessionDTO.getClientType());
-
             }
             writer.write("<p> Authorization is successful </p>");
 
@@ -54,5 +54,4 @@ public class LogInServlet extends HttpServlet {
             writer.write("<p>"+e.getMessage()+"</p>");
         }
     }
-//            req.getRequestDispatcher("/pages/main.jsp").forward(req,resp);
 }

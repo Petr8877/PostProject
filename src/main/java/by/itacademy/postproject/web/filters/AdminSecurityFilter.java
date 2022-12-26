@@ -31,6 +31,7 @@ public class AdminSecurityFilter implements Filter {
             }else {
                 response.sendRedirect(contextPath+"/ui/signIn");
             }
+
         }else {
             response.sendRedirect(contextPath+"/ui/signIn");
         }

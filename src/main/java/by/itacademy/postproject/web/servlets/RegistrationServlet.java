@@ -71,19 +71,11 @@ public class RegistrationServlet extends HttpServlet {
             registrationService.register(new UserDTO(login, password, fullName, birthdate));
 
             writer.write("<p>" + "Пользователь зарегистрирован" + "</p>");
-//            req.getRequestDispatcher("/pages/main.jsp").forward(req,resp);
-
-
         } catch (IllegalArgumentException exception) {
           writer.write("<p>" + exception.getMessage() + "</p>");
         } catch (DateTimeParseException exception) {
             writer.write("<p>" + "Неверный формат даты" + "</p>");
         }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        req.getRequestDispatcher("/pages/main.jsp").forward(req,resp);
     }
 
     public LocalDate parseDate(String date) {

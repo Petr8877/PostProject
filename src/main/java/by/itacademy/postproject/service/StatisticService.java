@@ -20,7 +20,7 @@ public class StatisticService implements IStatisticService {
     }
 
     @Override
-    public void setCountOfActiveUsers(){
+    public void addActiveUser(){
         if(countOfActiveUsers == null){
             countOfActiveUsers = 0;
         }

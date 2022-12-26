@@ -45,11 +45,11 @@ public class RegistrationService implements IRegistrationService {
         String login = userDTO.getLogin();
 
         if(login == null || login.isBlank()){
-            throw new IllegalArgumentException("Логин не введен");
+            throw new IllegalArgumentException("Login is not entered");
         }
 
         if(!login.matches("\\b([a-zA-Z\\d]+\\.?[a-zA-Z\\d]+)+")){
-            throw new IllegalArgumentException("Wrong format");
+            throw new IllegalArgumentException("Wrong format of login");
 //            \b([a-zA-Z\d]+\.?[a-zA-Z\d]+)+(@gm.com){1}
         }
         if( login.length()<6 ) {
@@ -58,14 +58,16 @@ public class RegistrationService implements IRegistrationService {
         if( login.length()>30 ) {
             throw new IllegalArgumentException("login cannot be longer then 30 symbols");
         }
+
+
         if (dao.isExist(login)){
-            throw new IllegalArgumentException("Пользователь с таким логином уже зарегистрирован");
+            throw new IllegalArgumentException("User with this login is already registered");
         }
 
         String password = userDTO.getPassword();
 
         if (password == null || password.isBlank()){
-            throw new IllegalArgumentException("Пароль не введен");
+            throw new IllegalArgumentException("Password is not entered");
         }
         if (password.length()<8){
             throw new IllegalArgumentException("Password can not be less then 8 symbols");
@@ -74,16 +76,22 @@ public class RegistrationService implements IRegistrationService {
         String fullName = userDTO.getFullName();
 
         if (fullName == null || fullName.isBlank()){
-            throw new IllegalArgumentException("Полное имя не введено");
+            throw new IllegalArgumentException("Full name is not entered");
+        }
+
+        if (userDTO.getFullName().length()<=4){
+            throw  new IllegalArgumentException("full name cannot be less then 4 symbols");
+        }
+        if(!userDTO.getFullName().matches("(([A-Z])\\w+) (([A-Z])\\w+)")){
+            throw  new IllegalArgumentException("write correct full name");
         }
 
         LocalDate birthdate = userDTO.getBirthdate();
 
         if (birthdate.isAfter(LocalDate.now()) || birthdate.isEqual(LocalDate.now()) || birthdate.isBefore(LocalDate.now().minusYears(100))){
-            throw new IllegalArgumentException("Указана неверная дата рождения");
+            throw new IllegalArgumentException("The date of birth is incorrect");
         }
 
-        //можно доп.проверить возраст пользователя
 
     }
 }

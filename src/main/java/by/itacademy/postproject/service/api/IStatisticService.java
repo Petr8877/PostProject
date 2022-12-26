@@ -7,5 +7,5 @@ public interface IStatisticService {
     Integer getCountOfActiveUsers();
     Integer getCountOfUsers();
     Integer getCountOfMessages();
-    void setCountOfActiveUsers();
+    void addActiveUser();
 }

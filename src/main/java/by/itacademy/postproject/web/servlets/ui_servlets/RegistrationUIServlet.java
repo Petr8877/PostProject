@@ -13,19 +13,6 @@ import java.io.PrintWriter;
 public class RegistrationUIServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req,resp);
-       // req.getRequestDispatcher("/pages/registration.jsp").forward(req,resp);
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=UTF-8");
-        processRequest(req,resp);
-    }
-    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/pages/registration.jsp").forward(req,resp);
-
     }
 }

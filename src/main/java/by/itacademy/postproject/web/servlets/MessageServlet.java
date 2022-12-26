@@ -34,13 +34,11 @@ public class MessageServlet extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
         List<PostedMessageDTO> user = service.getUserSendMessage(ActionSession.getParameterValue(req, "user").getLogin());
-        req.setAttribute("chats",user);
-        req.getRequestDispatcher("/pages/user_messages.jsp").forward(req,resp);
-
-        user.forEach(s-> writer.write("<p>"+s.getText() +"</p>"));
-//        writer.write("<p> All messages </p>");
-//        service.getSendMessage().forEach((key, value) -> writer.write("<p>" + key + "</p>"));
-
+        try {
+            user.forEach(s-> writer.write("<p>"+s.getText() +"</p>"));
+        } catch (IllegalArgumentException e){
+            writer.write("<p>"+e.getMessage()+"</p>");
+        }
     }
 
     @Override
@@ -57,15 +55,16 @@ public class MessageServlet extends HttpServlet {
 
         String recipient = (recipients == null) ? null : recipients[0];
         String text = (texts == null) ? null : texts[0];
+
         if (text == null || recipient == null || recipient.isBlank()){
             throw new IllegalArgumentException("Fill in all data");
         }
 
-        MessageDTO postMessageDTO = new MessageDTO(recipient, text);
+
         try {
+            MessageDTO postMessageDTO = new MessageDTO(recipient, text);
             PostedMessageDTO messageDTO = new PostedMessageDTO(ActionSession.getParameterValue(req, "user").getLogin(), postMessageDTO);
             service.sendMessage(messageDTO);
-
             writer.write("<p> Message send </p>");
         } catch (Exception e){
             writer.write("<p>"+e.getMessage()+"</p>");
