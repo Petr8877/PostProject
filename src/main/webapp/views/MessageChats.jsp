@@ -9,9 +9,10 @@
 <body>
 </br>
 <c:forEach items="${chats}" var="item">
+    <c:out value="${item.timeMessage} " />
     <c:out value="${item.sender} " />
     <c:out value="${item.text} " />
-    <c:out value="${item.timeMessage} " /> </br>
+ </br>
 
 </c:forEach>
 

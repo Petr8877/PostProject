@@ -69,8 +69,6 @@ public class MessageServlet extends HttpServlet {
 
         List<SavedMessageEntity> messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user").getLogin());
         PrintWriter writer = resp.getWriter();
-        req.setAttribute("chats",messageList);
-        req.getRequestDispatcher("/views/MessageChats.jsp").forward(req,resp);
 
         for (SavedMessageEntity messageEntity : messageList) {
             writer.write("<p>" + messageEntity + "</p>");
