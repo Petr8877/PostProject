@@ -69,12 +69,12 @@ font-size: 18px;
 <body bgcolor="#5F9EA0">
 <div style="text-align:center;">
 <h1 class="logo">Страница авторизации</h1>
-<form action = ${path} method = "POST">
+<form method = "POST" action = ${path}>
 <input type="text" name="login" placeholder="Логин"/>
 <br></br>
 <input type="password" name="password" placeholder="Пароль"/>
 <br></br>
-<input type="submit" value="Войти" class="border-button"/>
+<button type="submit" class="border-button"/>Войти</button>
 </form>
 </div>
 </body>

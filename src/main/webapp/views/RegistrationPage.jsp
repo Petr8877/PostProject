@@ -71,14 +71,16 @@ font-size: 18px;
 <form method="POST" action="${pageContext.request.contextPath}/api/user">
 <h1 class="logo">Форма для регистрации</h1>
 
+
   <input type="text" id="login" name="login" placeholder="логин"><br><br>
 
   <input type="password" id="password"  name="password" placeholder="пароль"><br><br>
 
-    <input type="text" id="fullName" name="fullName" pattern="[a-zA-Z]+ +[a-zA-Z]+$" placeholder="имя и фамилию"><br><br>
+    <input type="text" id="fullName" name="fullName" pattern="[a-zA-Z]+ +[a-zA-Z]+$" placeholder="имя и фамилия"><br><br>
 
-      <input type="text" id="birthdate" name="birthdate" placeholder="дата рождения (ГГГГ-ММ-ДД)"><br><br>
-   <button type="submit">Отправить форму</button>
+      <input type="text" id="birthdate" name="birthdate" placeholder="ГГГГ-ММ-ДД"><br><br>
+
+   <button type="submit" class="border-button">Отправить форму</button>
 </form>
 </body>
 </html>
