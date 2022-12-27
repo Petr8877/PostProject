@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(name = "MessageChatsPage", urlPatterns = "/ui/user/chats")
 public class MessageChatsPage extends HttpServlet {
@@ -23,8 +21,8 @@ public class MessageChatsPage extends HttpServlet {
         IMessageService service = MessageServiceSingleton.getInstance();
         List<SavedMessageEntity> messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user").getLogin());
 
-        req.setAttribute("chats",messageList);
-        req.getRequestDispatcher("/views/MessageChats.jsp").forward(req,resp);
+        req.setAttribute("chats", messageList);
+        req.getRequestDispatcher("/views/MessageChats.jsp").forward(req, resp);
 
     }
 }

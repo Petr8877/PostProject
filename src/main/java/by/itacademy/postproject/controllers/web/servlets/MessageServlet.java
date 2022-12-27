@@ -42,12 +42,12 @@ public class MessageServlet extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
 
-        try{
-            if(recipients == null) {
+        try {
+            if (recipients == null) {
                 throw new IllegalArgumentException("Message recipient not entered");
             }
 
-            if(texts == null) {
+            if (texts == null) {
                 throw new IllegalArgumentException("No message to send to recipient");
             }
 

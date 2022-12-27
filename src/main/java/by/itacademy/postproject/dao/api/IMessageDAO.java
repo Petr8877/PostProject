@@ -11,5 +11,5 @@ public interface IMessageDAO {
 
     Map<String, List<SavedMessageEntity>> getMessage();
 
-    List<SavedMessageEntity>getAllUserMessage(String login);
+    List<SavedMessageEntity> getAllUserMessage(String login);
 }

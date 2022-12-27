@@ -23,13 +23,13 @@ public class AdminSecurityFilter implements Filter {
         if ((session != null) && (session.getAttribute("user") != null)) {
             UserSessionDTO user = (UserSessionDTO) session.getAttribute("user");
 
-            if (user.getClientType().equals(ClientType.ADMINISTRATOR)){
-                chain.doFilter(request,response);
-            }else {
-                res.sendRedirect(contextPath+"/ui/signIn");
+            if (user.getClientType().equals(ClientType.ADMINISTRATOR)) {
+                chain.doFilter(request, response);
+            } else {
+                res.sendRedirect(contextPath + "/ui/signIn");
             }
 
-        }else {
+        } else {
             res.sendRedirect(contextPath + "/ui/signIn");
         }
 

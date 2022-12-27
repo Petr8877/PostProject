@@ -1,6 +1,5 @@
 package by.itacademy.postproject.service.factory;
 
-import by.itacademy.postproject.dto.StatisticsDTO;
 import by.itacademy.postproject.service.StatisticsService;
 
 public class StatisticsServiceSingleton {

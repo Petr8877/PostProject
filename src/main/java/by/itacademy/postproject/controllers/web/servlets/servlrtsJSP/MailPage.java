@@ -1,6 +1,5 @@
 package by.itacademy.postproject.controllers.web.servlets.servlrtsJSP;
 
-import by.itacademy.postproject.dto.UserDTO;
 import by.itacademy.postproject.dto.UserSessionDTO;
 
 import javax.servlet.ServletException;

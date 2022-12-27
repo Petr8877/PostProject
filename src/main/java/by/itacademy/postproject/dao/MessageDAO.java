@@ -15,7 +15,7 @@ public class MessageDAO implements IMessageDAO {
         List<SavedMessageEntity> list = usersMessages.containsKey(recipient) ?
                 usersMessages.get(recipient) : new ArrayList<>();
         list.add(messageEntity);
-        usersMessages.put(recipient,list);
+        usersMessages.put(recipient, list);
     }
 
     @Override

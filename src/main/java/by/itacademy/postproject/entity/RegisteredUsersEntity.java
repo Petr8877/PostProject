@@ -36,20 +36,15 @@ public class RegisteredUsersEntity {
         return dateRegistration;
     }
 
-    public void setDateRegistration(LocalDate dateRegistration) {
-        this.dateRegistration = dateRegistration;
-    }
-
     public ClientType getUserRole() {
         return userRole;
     }
 
     public void setAdmin() {
-        if (isAdmin == false){
+        if (!isAdmin) {
             userRole = ClientType.ADMINISTRATOR;
             isAdmin = true;
-        }
-        else userRole = ClientType.USER;
+        } else userRole = ClientType.USER;
     }
 
     @Override

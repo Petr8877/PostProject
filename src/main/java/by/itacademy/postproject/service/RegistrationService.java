@@ -40,13 +40,13 @@ public class RegistrationService implements IRegistrationService {
         if (dao.isExist(login)) {
             throw new IllegalArgumentException("User with this login is already registered");
         }
-        if(!login.matches("\\b([a-zA-Z\\d]+\\.?[a-zA-Z\\d]+)+")){
+        if (!login.matches("\\b([a-zA-Z\\d]+\\.?[a-zA-Z\\d]+)+")) {
             throw new IllegalArgumentException("Wrong format of login");
         }
-        if( login.length()<6 ) {
+        if (login.length() < 6) {
             throw new IllegalArgumentException("login can not be less then 6 symbols");
         }
-        if( login.length()>30 ) {
+        if (login.length() > 30) {
             throw new IllegalArgumentException("login cannot be longer then 30 symbols");
         }
 
@@ -55,7 +55,7 @@ public class RegistrationService implements IRegistrationService {
         if (password == null || password.isBlank()) {
             throw new IllegalArgumentException("Password not entered");
         }
-        if (password.length()<8){
+        if (password.length() < 8) {
             throw new IllegalArgumentException("Password can not be less then 8 symbols");
         }
 
@@ -64,11 +64,11 @@ public class RegistrationService implements IRegistrationService {
         if (fullName == null || fullName.isBlank()) {
             throw new IllegalArgumentException("Full name not entered");
         }
-        if (userDTO.getFullName().length()<=4){
-            throw  new IllegalArgumentException("full name cannot be less then 4 symbols");
+        if (userDTO.getFullName().length() <= 4) {
+            throw new IllegalArgumentException("full name cannot be less then 4 symbols");
         }
-        if(!userDTO.getFullName().matches("(([A-Z])\\w+) (([A-Z])\\w+)")){
-            throw  new IllegalArgumentException("write correct full name");
+        if (!userDTO.getFullName().matches("(([A-Z])\\w+) (([A-Z])\\w+)")) {
+            throw new IllegalArgumentException("write correct full name");
         }
 
         LocalDate birthdate = userDTO.getBirthdate();
@@ -81,6 +81,7 @@ public class RegistrationService implements IRegistrationService {
 
 
     }
+
     @Override
     public ClientType getClientType(String login) {
         return this.dao.getClientType(login);

@@ -16,25 +16,26 @@ public class LogInService implements ILogInService {
     public void signIn(LogInDTO log) {
         String login = log.getLogin();
 
-        if(login == null || login.isBlank()) {
+        if (login == null || login.isBlank()) {
             throw new IllegalArgumentException("Login not entered");
         }
 
-        if(!registrationService.isExist(login)){
+        if (!registrationService.isExist(login)) {
             throw new IllegalArgumentException("This login doesn't exist");
         }
 
         String password = log.getPassword();
 
-        if(password == null || password.isBlank()){
+        if (password == null || password.isBlank()) {
             throw new IllegalArgumentException("Password not entered");
         }
 
-        if(!registrationService.getUser(login).getUser().getPassword().equals(password)){
+        if (!registrationService.getUser(login).getUser().getPassword().equals(password)) {
             throw new IllegalArgumentException("Wrong password entered");
         }
 
     }
+
     @Override
     public ClientType getClientType(String login) {
         return registrationService.getClientType(login);

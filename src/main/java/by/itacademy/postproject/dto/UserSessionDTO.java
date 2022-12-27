@@ -8,7 +8,7 @@ public class UserSessionDTO {
 
     public UserSessionDTO(String login, ClientType clientType) {
         this.login = login;
-        this.clientType =  clientType;
+        this.clientType = clientType;
 
     }
 

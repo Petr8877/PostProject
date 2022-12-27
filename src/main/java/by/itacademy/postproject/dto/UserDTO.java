@@ -11,7 +11,7 @@ public class UserDTO {
 
     public UserDTO(String login, String password, String fullName, LocalDate birthdate) {
         this.login = login;
-        this.password =  password;
+        this.password = password;
         this.fullName = fullName;
         this.birthdate = birthdate;
     }
@@ -28,24 +28,12 @@ public class UserDTO {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
     public LocalDate getBirthdate() {
         return birthdate;
-    }
-
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
     }
 
     @Override

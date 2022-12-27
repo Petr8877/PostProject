@@ -6,8 +6,6 @@ import by.itacademy.postproject.entity.SavedMessageEntity;
 import by.itacademy.postproject.service.api.IMessageService;
 import by.itacademy.postproject.service.api.IRegistrationService;
 import by.itacademy.postproject.service.api.IStatisticsService;
-import by.itacademy.postproject.service.factory.RegistrationServiceSingleton;
-import by.itacademy.postproject.service.factory.StatisticsServiceSingleton;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +16,7 @@ public class MessageService implements IMessageService {
     private final IStatisticsService statisticsService;
     private IRegistrationService registrationService;
 
-    public MessageService(IMessageDAO dao, IStatisticsService statisticsService, IRegistrationService registrationService ) {
+    public MessageService(IMessageDAO dao, IStatisticsService statisticsService, IRegistrationService registrationService) {
         this.dao = dao;
         this.statisticsService = statisticsService;
         this.registrationService = registrationService;
@@ -50,16 +48,16 @@ public class MessageService implements IMessageService {
         return userSendMessage;
     }
 
-    private void validate(MessageDTO message){
+    private void validate(MessageDTO message) {
         String toWhom = message.getRecipient();
 
-        if(toWhom == null || toWhom.isBlank()){
+        if (toWhom == null || toWhom.isBlank()) {
             throw new IllegalArgumentException("Recipient not entered");
         }
 
         String text = message.getText();
 
-        if(text == null || text.isBlank()){
+        if (text == null || text.isBlank()) {
             throw new IllegalArgumentException("Message didn't fill");
         }
 

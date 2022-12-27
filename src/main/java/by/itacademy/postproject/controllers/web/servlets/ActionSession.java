@@ -23,10 +23,10 @@ public class ActionSession {
         return userSessionDTO;
     }
 
-        public static void saveSession (HttpServletRequest request, String key,UserSessionDTO userSessionDTO){
-            HttpSession session = request.getSession();
-            session.setAttribute(key,userSessionDTO);
-            session.setMaxInactiveInterval(600);
+    public static void saveSession(HttpServletRequest request, String key, UserSessionDTO userSessionDTO) {
+        HttpSession session = request.getSession();
+        session.setAttribute(key, userSessionDTO);
+        session.setMaxInactiveInterval(600);
     }
 
 

@@ -50,7 +50,7 @@ public class LogInServlet extends HttpServlet {
 
             LogInDTO log = new LogInDTO(login, password);
             service.signIn(log);
-            UserSessionDTO userSessionDTO = new  UserSessionDTO(login,service.getClientType(login));
+            UserSessionDTO userSessionDTO = new UserSessionDTO(login, service.getClientType(login));
 
             ActionSession.saveSession(req, "user", userSessionDTO);
             writer.write("<p> Authorization is successful </p>");

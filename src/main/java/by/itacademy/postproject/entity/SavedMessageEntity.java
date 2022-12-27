@@ -18,11 +18,13 @@ public class SavedMessageEntity {
     public MessageDTO getMessageDTO() {
         return messageDTO;
     }
-    public String getText(){
+
+    public String getText() {
         return messageDTO.getText();
     }
-    public String getSender(){
-        return  messageDTO.getSender();
+
+    public String getSender() {
+        return messageDTO.getSender();
     }
 
     public LocalDateTime getTimeMessage() {
@@ -45,7 +47,7 @@ public class SavedMessageEntity {
     @Override
     public String toString() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-        return  messageDTO +
+        return messageDTO +
                 ", timeMessage = " + dtf.format(timeMessage);
     }
 }
