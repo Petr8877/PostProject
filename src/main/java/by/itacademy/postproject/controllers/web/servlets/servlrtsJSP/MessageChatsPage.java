@@ -19,14 +19,17 @@ public class MessageChatsPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         IMessageService service = MessageServiceSingleton.getInstance();
-        try {
-            List<SavedMessageEntity> messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user").getLogin());
+        List<SavedMessageEntity>messageList = null;
 
-            req.setAttribute("chats", messageList);
-            req.getRequestDispatcher("/views/MessageChats.jsp").forward(req, resp);
-        } catch (Exception e){
-            req.getRequestDispatcher("/views/MessageChats.jsp").forward(req,resp);
+        try {
+            messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user").getLogin());
+        } catch (IllegalArgumentException e) {
+            req.setAttribute("exception", e.getMessage());
         }
+
+        req.setAttribute("chats", messageList);
+
+        req.getRequestDispatcher("/views/MessageChats.jsp").forward(req, resp);
 
     }
 }

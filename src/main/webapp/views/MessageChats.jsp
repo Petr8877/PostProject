@@ -73,13 +73,18 @@ font-size: 18px;
 <body bgcolor="#5F9EA0">
 <h1 class="logo">Полученные письма</h1>
 
+<c:choose>
+<c:when test="${chats==null}">
+<c:out value="${exception}"/>
+</c:when>
+<c:otherwise>
 <c:forEach items="${chats}" var="item">
     <c:out value="Дата и время сообщения: ${item.timeMessage}"/><br>
     <c:out value="Отправитель: ${item.sender}"/><br>
     <c:out value="Текст сообщения: ${item.text}"/>
  <br><br>
-
 </c:forEach>
-
+</c:otherwise>
+</c:choose>
 </body>
 </html>
