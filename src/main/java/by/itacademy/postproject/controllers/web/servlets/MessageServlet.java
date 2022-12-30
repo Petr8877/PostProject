@@ -67,11 +67,13 @@ public class MessageServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
 
-        List<SavedMessageEntity> messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user").getLogin());
         PrintWriter writer = resp.getWriter();
 
-        for (SavedMessageEntity messageEntity : messageList) {
-            writer.write("<p>" + messageEntity + "</p>");
+        try{
+            List<SavedMessageEntity> messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user").getLogin());
+            messageList.forEach(s -> writer.write("<p>" + s + "</p>"));
+        } catch (IllegalArgumentException e) {
+            writer.write("<p>" + e.getMessage() + "</p>");
         }
     }
 }

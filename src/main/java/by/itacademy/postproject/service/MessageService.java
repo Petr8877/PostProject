@@ -24,12 +24,9 @@ public class MessageService implements IMessageService {
 
     @Override
     public void sendMessage(MessageDTO messageDTO) {
-        if (registrationService.isExist(messageDTO.getRecipient())) {
-            validate(messageDTO);
-            dao.save(new SavedMessageEntity(messageDTO));
-            statisticsService.addCountMessage();
-        } else throw new IllegalArgumentException("such recipient is not registered");
-
+        validate(messageDTO);
+        dao.save(new SavedMessageEntity(messageDTO));
+        statisticsService.addCountMessage();
     }
 
     @Override
@@ -39,11 +36,9 @@ public class MessageService implements IMessageService {
 
     @Override
     public List<SavedMessageEntity> getAllUserMessage(String login) {
-        List<SavedMessageEntity> userSendMessage;
-        try {
-            userSendMessage = dao.getAllUserMessage(login);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("there is no message");
+        List<SavedMessageEntity> userSendMessage = dao.getAllUserMessage(login);;
+        if(userSendMessage == null) {
+            throw new IllegalArgumentException("No message for this user");
         }
         return userSendMessage;
     }
@@ -53,6 +48,10 @@ public class MessageService implements IMessageService {
 
         if (toWhom == null || toWhom.isBlank()) {
             throw new IllegalArgumentException("Recipient not entered");
+        }
+
+        if(!registrationService.isExist(message.getRecipient())){
+            throw new IllegalArgumentException("Such recipient is not registered");
         }
 
         String text = message.getText();
