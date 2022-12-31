@@ -76,7 +76,7 @@ font-size: 18px;
 
   <input type="password" id="password"  name="password" placeholder="пароль"><br><br>
 
-    <input type="text" id="fullName" name="fullName" pattern="[a-zA-Z]+ +[a-zA-Z]+$" placeholder="имя и фамилия"><br><br>
+    <input type="text" id="fullName" name="fullName" pattern="([A-Za-z]\w+) ([A-Za-z]\w+)|([А-Яа-я]+ [А-Яа-я]+)$" placeholder="имя и фамилия"><br><br>
 
       <input type="text" id="birthdate" name="birthdate" placeholder="ГГГГ-ММ-ДД"><br><br>
 

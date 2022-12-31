@@ -64,10 +64,10 @@ public class RegistrationService implements IRegistrationService {
         if (fullName == null || fullName.isBlank()) {
             throw new IllegalArgumentException("Full name not entered");
         }
-        if (userDTO.getFullName().length() <= 4) {
-            throw new IllegalArgumentException("full name cannot be less then 4 symbols");
+        if (userDTO.getFullName().length() < 5) {
+            throw new IllegalArgumentException("full name cannot be less then 5 symbols");
         }
-        if (!userDTO.getFullName().matches("(([A-Z])\\w+) (([A-Z])\\w+)")) {
+        if (!userDTO.getFullName().matches("([A-Za-z]\\w+) ([A-Za-z]\\w+)|([А-Яа-я]+ [А-Яа-я]+)")) {
             throw new IllegalArgumentException("write correct full name");
         }
 
