@@ -14,4 +14,11 @@ public class RegistrationPage extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/views/RegistrationPage.jsp").forward(req, resp);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("mail", 1);
+        //doGet(req,resp);
+        req.getRequestDispatcher("/views/RegistrationPage.jsp").forward(req, resp);
+    }
 }

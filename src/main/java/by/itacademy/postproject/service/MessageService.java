@@ -37,9 +37,9 @@ public class MessageService implements IMessageService {
     @Override
     public List<SavedMessageEntity> getAllUserMessage(String login) {
         List<SavedMessageEntity> userSendMessage = dao.getAllUserMessage(login);;
-        if(userSendMessage == null) {
-            throw new IllegalArgumentException("No message for this user");
-        }
+//        if(userSendMessage == null) {
+//            throw new IllegalArgumentException("No message for this user");
+//        }
         return userSendMessage;
     }
 

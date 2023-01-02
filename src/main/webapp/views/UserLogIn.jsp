@@ -4,22 +4,17 @@
 <html>
 <head>
 <title>Илья привет</title>
-
-
+<%@ include file="Include.jsp" %>
+<div style="text-align:center;">
 
 <style>
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
 .border-button {
   text-decoration: none;
   display: inline-block;
   padding: 20px 30px;
   margin: 10px 20px;
   position: relative;
-  color: Azure;
+  color: white;
   border: 1px solid rgba(255, 255, 255, .4);
   background: none;
   font-weight: 300;
@@ -64,24 +59,11 @@ box-sizing: border-box;
 .border-button:hover {
   background: rgba(255, 255, 255, .2);
 }
-.bod {
-  height: 120%;
-  width: 100%;
-  background-image: url("../img/logo4.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
   </style>
 </head>
+<br><br>
 <body bgcolor="#5F9EA0">
-<div class="bod">
-<%@ include file="Include.jsp" %>
-<a href="${pageContext.request.contextPath}/ui/singUp" class="border-button">Регистрация</a><br><br>
-<a href="${pageContext.request.contextPath}/ui/signIn" class="border-button">Вход</a><br><br>
-<a href="${pageContext.request.contextPath}/ui/user/message" class="border-button">Отправить письмо</a><br><br>
-<a href="${pageContext.request.contextPath}/ui/user/chats" class="border-button">Полученные письма</a><br><br>
-<a href="${pageContext.request.contextPath}/ui/admin/statistics" class="border-button">Статиска</a><br><br>
-</div>
+<h1 class="logo">Авторизация завершена успешно</h1>
+<a href="${pageContext.request.contextPath}/ui/" class="border-button">Возврат на главную</a><br><br>
 </body>
 </html>

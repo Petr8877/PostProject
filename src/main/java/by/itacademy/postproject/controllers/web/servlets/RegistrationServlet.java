@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.http.HttpClient;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Map;
@@ -70,7 +71,9 @@ public class RegistrationServlet extends HttpServlet {
 
             registrationService.register(new UserDTO(login, password, fullName, birthdate));
 
-            writer.write("<p> User registered </p>");
+            String path = req.getContextPath() + "/ui" + "/userRegistered";
+
+            resp.sendRedirect(path);
 
         } catch (IllegalArgumentException exception) {
             writer.write("<p>" + exception.getMessage() + "</p>");

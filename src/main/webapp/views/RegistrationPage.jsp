@@ -3,13 +3,19 @@
         pageEncoding="UTF-8"%>
 <html>
 <head>
-<%@ include file="Include.jsp" %>
-<div style="text-align:center;">
+
+
 <style>
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
 .logo {
 color: Azure;
 font-family: Times New Roman;
 font-size: 18px;
+margin-left: 40px;
 }
 
 .border-button {
@@ -63,24 +69,43 @@ font-size: 18px;
 .border-button:hover {
   background: rgba(255, 255, 255, .2);
 }
-
+input {
+  border: 2px solid currentcolor;
+}
+input:invalid {
+  border: 2px dashed red;
+}
+.bod {
+  height: 120%;
+  width: 100%;
+  background-image: url("../img/logo4.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.tab { margin-left: 40px; }
 </style>
 
 </head>
 <body bgcolor="#5F9EA0">
 <form method="POST" action="${pageContext.request.contextPath}/api/user">
-<h1 class="logo">Форма для регистрации</h1>
+<div class="bod">
+<%@ include file="Include.jsp" %>
+<h1 class="logo">Форма для регистрации</h1><br>
 
 
-  <input type="text" id="login" name="login" placeholder="логин"><br><br>
+  <input class="tab" type="text" minlength="6" maxlength="30" id="login" name="login" required="required" pattern="\b([a-zA-Z\d]+\.?[a-zA-Z\d]+)+" placeholder="логин"><br><br>
 
-  <input type="password" id="password"  name="password" placeholder="пароль"><br><br>
+  <input class="tab" type="password" id="password"  name="password" required="required" minlength="8" placeholder="пароль"><br><br>
 
-    <input type="text" id="fullName" name="fullName" pattern="[a-zA-Z]+ +[a-zA-Z]+$" placeholder="имя и фамилия"><br><br>
+  <input class="tab" type="text" id="fullName" name="fullName" required="required" pattern="[a-zA-Z]+ +[a-zA-Z]+$" minlength="4" placeholder="имя и фамилия"><br><br>
 
-      <input type="text" id="birthdate" name="birthdate" placeholder="ГГГГ-ММ-ДД"><br><br>
+  <input class="tab" type="date" name="birthdate" min="1930-01-01" max="2022-01-01"><br><br>
+
+
 
    <button type="submit" class="border-button">Отправить форму</button>
+   </div>
 </form>
 </body>
 </html>
