@@ -69,7 +69,6 @@ public class RegistrationServlet extends HttpServlet {
             LocalDate birthdate = parseDate(date);
 
             registrationService.register(new UserDTO(login, password, fullName, birthdate));
-
             writer.write("<p> User registered </p>");
 
         } catch (IllegalArgumentException exception) {
@@ -79,15 +78,6 @@ public class RegistrationServlet extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=UTF-8");
-
-        PrintWriter writer = resp.getWriter();
-        writer.write("<p>Hello</p>");
-    }
 
     public LocalDate parseDate(String date) {
         if (date == null) {
