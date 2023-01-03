@@ -3,7 +3,7 @@
         pageEncoding="UTF-8"%>
 <html>
 <head>
-<title>И снова зраствуйте</title>
+<title>И снова здравствуйте</title>
 <style>
 .logo {
 color: Azure;
