@@ -43,25 +43,20 @@ public class RegistrationService implements IRegistrationService {
 
     private void validate(UserDTO userDTO){
         String login = userDTO.getLogin();
-
-        if(login == null || login.isBlank()){
-            throw new IllegalArgumentException("Login is not entered");
+        if (login == null || login.isBlank()) {
+            throw new IllegalArgumentException("Login not entered");
         }
-
-        if(!login.matches("\\b([a-zA-Z\\d]+\\.?[a-zA-Z\\d]+)+")){
+        if (dao.isExist(login)) {
+            throw new IllegalArgumentException("User with this login is already registered");
+        }
+        if (!login.matches("([a-zA-Z]+\\.?[a-zA-Z]+)+")) {
             throw new IllegalArgumentException("Wrong format of login");
-//            \b([a-zA-Z\d]+\.?[a-zA-Z\d]+)+(@gm.com){1}
         }
-        if( login.length()<6 ) {
+        if (login.length() < 6) {
             throw new IllegalArgumentException("login can not be less then 6 symbols");
         }
-        if( login.length()>30 ) {
+        if (login.length() > 30) {
             throw new IllegalArgumentException("login cannot be longer then 30 symbols");
-        }
-
-
-        if (dao.isExist(login)){
-            throw new IllegalArgumentException("User with this login is already registered");
         }
 
         String password = userDTO.getPassword();
@@ -82,7 +77,7 @@ public class RegistrationService implements IRegistrationService {
         if (userDTO.getFullName().length()<=4){
             throw  new IllegalArgumentException("full name cannot be less then 4 symbols");
         }
-        if(!userDTO.getFullName().matches("(([A-Z])\\w+) (([A-Z])\\w+)")){
+        if(!userDTO.getFullName().matches("([A-Za-z]+) ([A-Za-z]+)|([А-Яа-я]+ [А-Яа-я]+)")){
             throw  new IllegalArgumentException("write correct full name");
         }
 

@@ -1,5 +1,6 @@
 package by.itacademy.postproject.web.servlets;
 
+import by.itacademy.postproject.dto.ClientType;
 import by.itacademy.postproject.dto.LoginDTO;
 import by.itacademy.postproject.dto.UserSessionDTO;
 import by.itacademy.postproject.service.api.ILogInService;
@@ -47,11 +48,19 @@ public class LogInServlet extends HttpServlet {
             if(service.checkLogin(logInDTO)){
                 UserSessionDTO userSessionDTO = new  UserSessionDTO(login,service.getClientType(login));
                 ActionSession.saveSession(req,"user", userSessionDTO);
+                if ( userSessionDTO.getClientType().equals(ClientType.USER)){
+                    req.getRequestDispatcher("/pages/user_main.jsp").forward(req,resp);
+                }
+                if ( userSessionDTO.getClientType().equals(ClientType.ADMINISTRATOR)){
+                    req.getRequestDispatcher("/pages/secured/admin_main.jsp").forward(req,resp);
+                }
             }
-            writer.write("<p> Authorization is successful </p>");
+
 
         } catch (Exception e){
-            writer.write("<p>"+e.getMessage()+"</p>");
+            req.setAttribute("error_login", e.getMessage());
+            req.getRequestDispatcher("/pages/login.jsp").forward(req,resp);
         }
+
     }
 }

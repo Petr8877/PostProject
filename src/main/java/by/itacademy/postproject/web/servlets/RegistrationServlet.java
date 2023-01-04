@@ -70,12 +70,12 @@ public class RegistrationServlet extends HttpServlet {
 
             registrationService.register(new UserDTO(login, password, fullName, birthdate));
 
-            writer.write("<p>" + "Пользователь зарегистрирован" + "</p>");
-        } catch (IllegalArgumentException exception) {
-          writer.write("<p>" + exception.getMessage() + "</p>");
-        } catch (DateTimeParseException exception) {
-            writer.write("<p>" + "Неверный формат даты" + "</p>");
+            req.getRequestDispatcher("/index.jsp").forward(req,resp);
+        } catch (IllegalArgumentException | DateTimeParseException exception) {
+            req.setAttribute("error_registration", exception.getMessage());
+            req.getRequestDispatcher("/pages/registration.jsp").forward(req, resp);
         }
+
     }
 
     public LocalDate parseDate(String date) {

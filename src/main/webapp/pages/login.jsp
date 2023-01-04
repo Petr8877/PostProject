@@ -3,18 +3,35 @@
             pageEncoding="UTF-8" %>
 <%@ page session="false"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-
 <html>
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <head>
-    <title>Login</title>
+    <title>login</title>
 </head>
 <body>
+<jsp:include page="/pages/navbar.jsp"/>
+<div class="container mt-5">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</br>
 <form action= "${pageContext.request.contextPath}/api/login" method="POST">
-      Login:</br>
+<div class="mx-auto" style="width: 200px;">
+
+    </br> Login:
     <input type="text" name="login" />
-     </br>Password:</br>
-    <input type="password" name="password" />  <br/>
-  <input type="submit" value="submit" />
+
+    </br>Password:
+    <input type="password" name="password" />
+    <br/>
+
+
+    <br/>
+    <input type="submit" value="submit" />
+    <br/>
+    ${error_login}
+</div>
 </form>
 </body>
 </html>

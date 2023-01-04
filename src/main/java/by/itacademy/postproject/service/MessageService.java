@@ -34,11 +34,14 @@ public class MessageService implements IMessageService {
     @Override
     public List<PostedMessageDTO> getUserSendMessage(String login) {
         List<PostedMessageDTO> userSendMessage;
-        try {
+
             userSendMessage = messageDAO.getUserSendMessage(login);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("no message", e);
-        }
+
         return userSendMessage;
+    }
+
+    @Override
+    public Integer getCountOfMessage() {
+        return messageDAO.getCountOfMessage();
     }
 }

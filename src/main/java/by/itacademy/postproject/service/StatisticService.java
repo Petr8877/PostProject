@@ -45,12 +45,7 @@ public class StatisticService implements IStatisticService {
 
     @Override
     public Integer getCountOfMessages() {
-        int count = 0;
-        for ( String  val: messageService.getSendMessage().keySet()) {
-            for (PostedMessageDTO message: messageService.getSendMessage().get(val) ) {
-                count++;
-            }
-        }
-        return count;
+        Integer countOfMessage = messageService.getCountOfMessage();
+        return countOfMessage;
     }
 }

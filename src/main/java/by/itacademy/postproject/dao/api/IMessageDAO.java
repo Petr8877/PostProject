@@ -11,4 +11,5 @@ public interface IMessageDAO {
     Map<String,List<PostedMessageDTO>>  getSendMessage();
 
     List<PostedMessageDTO> getUserSendMessage(String login);
+    Integer getCountOfMessage();
 }

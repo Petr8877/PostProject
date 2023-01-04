@@ -1,7 +1,9 @@
 package by.itacademy.postproject.web.servlets;
 
+import by.itacademy.postproject.dto.ClientType;
 import by.itacademy.postproject.dto.PostedMessageDTO;
 import by.itacademy.postproject.dto.MessageDTO;
+import by.itacademy.postproject.dto.UserSessionDTO;
 import by.itacademy.postproject.service.api.IMessageService;
 import by.itacademy.postproject.service.factory.MessageServiceSingleton;
 
@@ -63,11 +65,19 @@ public class MessageServlet extends HttpServlet {
 
         try {
             MessageDTO postMessageDTO = new MessageDTO(recipient, text);
-            PostedMessageDTO messageDTO = new PostedMessageDTO(ActionSession.getParameterValue(req, "user").getLogin(), postMessageDTO);
+            UserSessionDTO user = ActionSession.getParameterValue(req, "user");
+            PostedMessageDTO messageDTO = new PostedMessageDTO(user.getLogin(), postMessageDTO);
             service.sendMessage(messageDTO);
-            writer.write("<p> Message send </p>");
+            if(user.getClientType().equals(ClientType.USER)) {
+                req.getRequestDispatcher("/pages/user_main.jsp").forward(req, resp);
+            }
+            if(user.getClientType().equals(ClientType.ADMINISTRATOR)) {
+                req.getRequestDispatcher("/pages/secured/admin_main.jsp").forward(req, resp);
+            }
+
         } catch (Exception e){
-            writer.write("<p>"+e.getMessage()+"</p>");
+            req.setAttribute("error_message", e.getMessage());
+            req.getRequestDispatcher("/pages/message.jsp").forward(req, resp);
         }
     }
 }

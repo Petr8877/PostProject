@@ -34,6 +34,18 @@ public class MessageDAO implements IMessageDAO {
 
         return sendMessageDAO.get(login);
     }
+
+    @Override
+    public Integer getCountOfMessage() {
+        int count = 0;
+        for ( String  val: sendMessageDAO.keySet()) {
+            for (PostedMessageDTO message: sendMessageDAO.get(val) ) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     private boolean isRecipientExist(String login){
         return sendMessageDAO.containsKey(login);
     }

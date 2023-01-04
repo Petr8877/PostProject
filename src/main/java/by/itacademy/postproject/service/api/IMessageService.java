@@ -11,4 +11,5 @@ public interface IMessageService {
     Map<String, List<PostedMessageDTO>> getSendMessage();
 
     List<PostedMessageDTO> getUserSendMessage(String login);
+    Integer getCountOfMessage();
 }
