@@ -1,5 +1,6 @@
 package by.itacademy.postproject.controllers.web.servlets;
 
+import by.itacademy.postproject.dto.StatisticsDTO;
 import by.itacademy.postproject.service.api.IStatisticsService;
 import by.itacademy.postproject.service.factory.StatisticsServiceSingleton;
 
@@ -23,6 +24,11 @@ public class StatisticsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
-        writer.write("<p>" + service.getAllStatistics() + "</p>");
+
+        StatisticsDTO allStatistics = service.getAllStatistics();
+
+        writer.write("<p> Number of active users in the application: " + allStatistics.getCountActiveUser() + "</p>");
+        writer.write("<p> Number of all registered users in the application: " + allStatistics.getCountAllUser() + "</p>");
+        writer.write("<p> Number of sent messages in the application: " + allStatistics.getCountMessage() + "</p>");
     }
 }

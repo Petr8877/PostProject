@@ -42,8 +42,8 @@ public class StatisticsDTO {
 
     @Override
     public String toString() {
-        return "Number of active users in the application: " + countActiveUser + "\n" +
-                "Number of all registered users in the application: " + countAllUser + "\n" +
-                "Number of sent messages in the application: " + countMessage;
+        return "countActiveUser=" + countActiveUser +
+                ", countAllUser=" + countAllUser +
+                ", countMessage=" + countMessage;
     }
 }
