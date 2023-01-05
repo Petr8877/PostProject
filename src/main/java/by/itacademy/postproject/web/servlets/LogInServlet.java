@@ -36,8 +36,7 @@ public class LogInServlet extends HttpServlet {
 
         String[] passwords = parameterMap.get(PARAM_NAME_PASSWORD);
 
-        PrintWriter writer = resp.getWriter();
-        String page;
+//        String page;
 
         try {
             String login = (logins == null) ? null : logins[0];

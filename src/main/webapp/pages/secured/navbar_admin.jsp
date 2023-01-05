@@ -22,6 +22,9 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/ui/admin/statistics">Statistics</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/ui/signOut">Log out</a>
+        </li>
       </ul>
     </div>
   </nav>
