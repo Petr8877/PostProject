@@ -1,4 +1,4 @@
-package by.itacademy.postproject.web.filters;
+package by.itacademy.postproject.web.filter;
 
 
 import by.itacademy.postproject.dto.ClientType;
