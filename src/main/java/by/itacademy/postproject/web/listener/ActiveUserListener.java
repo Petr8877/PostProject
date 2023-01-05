@@ -6,9 +6,6 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.*;
 @WebListener
 public class ActiveUserListener implements HttpSessionAttributeListener {
-
-
-
     @Override
     public void attributeAdded(HttpSessionBindingEvent event) {
             if (event.getName().equals("user")){
@@ -18,15 +15,15 @@ public class ActiveUserListener implements HttpSessionAttributeListener {
 
 
     @Override
-    public void attributeRemoved(HttpSessionBindingEvent httpSessionBindingEvent) {
-
+    public void attributeRemoved(HttpSessionBindingEvent event) {
+        if (event.getName().equals("user")){
+            StatisticServiceSingleton.getInstance().addActiveUser();
+        }
     }
 
     @Override
     public void attributeReplaced(HttpSessionBindingEvent event) {
-        if (event.getName().equals("user")){
-            StatisticServiceSingleton.getInstance().addActiveUser();
-        }
+
     }
 
 

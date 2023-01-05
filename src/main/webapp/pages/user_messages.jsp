@@ -20,6 +20,11 @@
 
 
 <body>
+ <div class="mx-auto" style="width: 1000px;">
+${user.login}
+</br>
+</br>
+
 <table class="table table-striped table-hover">
   <thead>
     <tr>
@@ -43,7 +48,6 @@
 
 </table>
 
-
-</form>
+</div>
 </body>
 </html>

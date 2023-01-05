@@ -8,4 +8,5 @@ public interface IStatisticService {
     Integer getCountOfUsers();
     Integer getCountOfMessages();
     void addActiveUser();
+    void deleteActiveUser();
 }

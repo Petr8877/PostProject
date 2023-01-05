@@ -1,3 +1,4 @@
+<div class="mx-auto" style="width: 1000px;">
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">Mole</a>
@@ -21,4 +22,5 @@
       </ul>
     </div>
   </nav>
+  </div>
 

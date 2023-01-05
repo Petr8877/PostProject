@@ -1,7 +1,6 @@
 package by.itacademy.postproject.web.servlets;
 
 import by.itacademy.postproject.dto.ClientType;
-import by.itacademy.postproject.dto.StatisticDTO;
 import by.itacademy.postproject.dto.UserSessionDTO;
 import by.itacademy.postproject.service.api.IStatisticService;
 import by.itacademy.postproject.service.factory.StatisticServiceSingleton;

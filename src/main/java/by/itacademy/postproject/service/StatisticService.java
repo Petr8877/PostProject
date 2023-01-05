@@ -27,6 +27,11 @@ public class StatisticService implements IStatisticService {
         countOfActiveUsers++;
     }
 
+    @Override
+    public void deleteActiveUser() {
+        countOfActiveUsers--;
+    }
+
 
     @Override
     public StatisticDTO getStatistic() {

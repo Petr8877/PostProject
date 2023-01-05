@@ -2,7 +2,6 @@ package by.itacademy.postproject.web.filters;
 
 
 import by.itacademy.postproject.dto.ClientType;
-import by.itacademy.postproject.dto.UserDTO;
 import by.itacademy.postproject.dto.UserSessionDTO;
 
 import javax.servlet.*;

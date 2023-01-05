@@ -68,6 +68,7 @@ public class MessageServlet extends HttpServlet {
             UserSessionDTO user = ActionSession.getParameterValue(req, "user");
             PostedMessageDTO messageDTO = new PostedMessageDTO(user.getLogin(), postMessageDTO);
             service.sendMessage(messageDTO);
+            req.setAttribute("success_message", "message send");
             if(user.getClientType().equals(ClientType.USER)) {
                 req.getRequestDispatcher("/pages/user_main.jsp").forward(req, resp);
             }

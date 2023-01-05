@@ -28,9 +28,9 @@
      </br>Birthday:
              <input type="text" name="birthdate" />
      <br/>
-     ${error_registration}
-     <br/>
   <input type="submit" value="submit" />
+       <br/>
+       ${error_registration}
 </div>
 </form>
 </body>

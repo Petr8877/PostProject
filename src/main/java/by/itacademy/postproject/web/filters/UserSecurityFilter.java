@@ -1,8 +1,6 @@
 package by.itacademy.postproject.web.filters;
 
 
-import by.itacademy.postproject.dto.ClientType;
-import by.itacademy.postproject.dto.UserSessionDTO;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
