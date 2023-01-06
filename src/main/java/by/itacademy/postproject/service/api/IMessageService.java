@@ -14,6 +14,6 @@ public interface IMessageService {
 
     List<SavedMessageEntity> getAllUserMessage(String login);
 
-    Integer getCountAllMessage();
+    int getCountAllMessage();
 
 }

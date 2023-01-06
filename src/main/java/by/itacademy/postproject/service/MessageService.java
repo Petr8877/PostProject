@@ -40,7 +40,7 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public Integer getCountAllMessage() {
+    public int getCountAllMessage() {
         return dao.getCountAllMessage();
     }
 

@@ -6,7 +6,6 @@ import by.itacademy.postproject.dto.MessageDTO;
 import by.itacademy.postproject.dto.UserDTO;
 import by.itacademy.postproject.service.api.IMessageService;
 import by.itacademy.postproject.service.api.IRegistrationService;
-import by.itacademy.postproject.service.api.IStatisticsService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -145,6 +144,45 @@ public class MessageServiceTest {
         messageService.sendMessage(messageDTO);
 
         Assertions.assertDoesNotThrow(() -> messageService.getAllUserMessage(toWhom.getLogin()));
+    }
+
+    @Test
+    public void getCountAllMessage(){
+        RegisteredUsersDAO daoReg = new RegisteredUsersDAO();
+        MessageDAO daoMes = new MessageDAO();
+        IRegistrationService registrationService = new RegistrationService(daoReg);
+        IMessageService messageService = new MessageService(daoMes, registrationService);
+
+        UserDTO toWhom = new UserDTO("Annyyy","12345678", "Ann Ivanova", LocalDate.of(2000, 10, 10));
+
+        registrationService.register(toWhom);
+
+        MessageDTO messageDTO = new MessageDTO("Rolly", "Annyyy", "It's test");
+        messageService.sendMessage(messageDTO);
+
+        Assertions.assertEquals(1, messageService.getCountAllMessage());
+    }
+
+    @Test
+    public void getCountAllMessage2(){
+        RegisteredUsersDAO daoReg = new RegisteredUsersDAO();
+        MessageDAO daoMes = new MessageDAO();
+        IRegistrationService registrationService = new RegistrationService(daoReg);
+        IMessageService messageService = new MessageService(daoMes, registrationService);
+
+        UserDTO toWhom = new UserDTO("Annyyy","12345678", "Ann Ivanova", LocalDate.of(2000, 10, 10));
+        UserDTO toWhom2 = new UserDTO("Rollly","87654321", "Olya Smirnova", LocalDate.of(1999, 01, 11));
+
+        registrationService.register(toWhom);
+        registrationService.register(toWhom2);
+
+        MessageDTO messageDTO = new MessageDTO("Rollly", "Annyyy", "It's test");
+        MessageDTO messageDTO2 = new MessageDTO("Annyyy", "Rollly", "It's test");
+
+        messageService.sendMessage(messageDTO);
+        messageService.sendMessage(messageDTO2);
+
+        Assertions.assertEquals(2, messageService.getCountAllMessage());
     }
 
 }
