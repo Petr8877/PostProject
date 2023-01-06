@@ -23,10 +23,13 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public void sendMessage(MessageDTO messageDTO) {
-        validate(messageDTO);
-        dao.save(new SavedMessageEntity(messageDTO));
-        statisticsService.addCountMessage();
+    public boolean sendMessage(MessageDTO messageDTO) {
+        if (validate(messageDTO)) {
+            dao.save(new SavedMessageEntity(messageDTO));
+            statisticsService.addCountMessage();
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -36,29 +39,33 @@ public class MessageService implements IMessageService {
 
     @Override
     public List<SavedMessageEntity> getAllUserMessage(String login) {
-        List<SavedMessageEntity> userSendMessage = dao.getAllUserMessage(login);;
+        List<SavedMessageEntity> userSendMessage = dao.getAllUserMessage(login);
+        ;
 //        if(userSendMessage == null) {
 //            throw new IllegalArgumentException("No message for this user");
 //        }
         return userSendMessage;
     }
 
-    private void validate(MessageDTO message) {
+    private boolean validate(MessageDTO message) {
         String toWhom = message.getRecipient();
 
         if (toWhom == null || toWhom.isBlank()) {
-            throw new IllegalArgumentException("Recipient not entered");
+            return false;
+//            throw new IllegalArgumentException("Recipient not entered");
         }
 
-        if(!registrationService.isExist(message.getRecipient())){
-            throw new IllegalArgumentException("Such recipient is not registered");
+        if (!registrationService.isExist(message.getRecipient())) {
+            return false;
+            //throw new IllegalArgumentException("Such recipient is not registered");
         }
 
         String text = message.getText();
 
         if (text == null || text.isBlank()) {
-            throw new IllegalArgumentException("Message didn't fill");
+            return false;
+            //throw new IllegalArgumentException("Message didn't fill");
         }
-
+        return true;
     }
 }

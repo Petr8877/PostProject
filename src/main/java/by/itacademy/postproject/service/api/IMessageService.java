@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface IMessageService {
 
-    void sendMessage(MessageDTO messageDTO);
+    boolean sendMessage(MessageDTO messageDTO);
 
     Map<String, List<SavedMessageEntity>> getMessage();
 

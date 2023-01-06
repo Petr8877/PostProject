@@ -49,14 +49,19 @@ public class LogInServlet extends HttpServlet {
             }
 
             LogInDTO log = new LogInDTO(login, password);
-            service.signIn(log);
-            UserSessionDTO userSessionDTO = new UserSessionDTO(login, service.getClientType(login));
+            if (service.signIn(log)) {
+                UserSessionDTO userSessionDTO = new UserSessionDTO(login, service.getClientType(login));
 
-            ActionSession.saveSession(req, "user", userSessionDTO);
-            String path = req.getContextPath() + "/ui" + "/UserLogIn";
+                ActionSession.saveSession(req, "user", userSessionDTO);
+                String path = req.getContextPath() + "/ui" + "/UserLogIn";
 
-            resp.sendRedirect(path);
-           // writer.write("<p> Authorization is successful </p>");
+                resp.sendRedirect(path);
+            } else {
+                String path = req.getContextPath() + "/ui" + "/UserNotLogIn";
+
+                resp.sendRedirect(path);
+            }
+            // writer.write("<p> Authorization is successful </p>");
 
         } catch (IllegalArgumentException exception) {
             writer.write("<p>" + exception.getMessage() + "</p>");

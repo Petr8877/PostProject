@@ -13,27 +13,32 @@ public class LogInService implements ILogInService {
     }
 
     @Override
-    public void signIn(LogInDTO log) {
+    public boolean signIn(LogInDTO log) {
         String login = log.getLogin();
 
         if (login == null || login.isBlank()) {
-            throw new IllegalArgumentException("Login not entered");
+            return false;
+            //throw new IllegalArgumentException("Login not entered");
         }
 
         if (!registrationService.isExist(login)) {
-            throw new IllegalArgumentException("This login doesn't exist");
+            return false;
+            //throw new IllegalArgumentException("This login doesn't exist");
         }
 
         String password = log.getPassword();
 
         if (password == null || password.isBlank()) {
-            throw new IllegalArgumentException("Password not entered");
+            return false;
+            //throw new IllegalArgumentException("Password not entered");
         }
 
         if (!registrationService.getUser(login).getUser().getPassword().equals(password)) {
-            throw new IllegalArgumentException("Wrong password entered");
+            return false;
+            //throw new IllegalArgumentException("Wrong password entered");
         }
 
+        return true;
     }
 
     @Override

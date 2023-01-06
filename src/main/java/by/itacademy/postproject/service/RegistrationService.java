@@ -16,9 +16,12 @@ public class RegistrationService implements IRegistrationService {
     }
 
     @Override
-    public void register(UserDTO user) {
-        validate(user);
-        this.dao.save(new RegisteredUsersEntity(user));
+    public boolean register(UserDTO user) {
+        if (validate(user)) {
+            this.dao.save(new RegisteredUsersEntity(user));
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -31,44 +34,54 @@ public class RegistrationService implements IRegistrationService {
         return this.dao.getUser(login);
     }
 
-    private void validate(UserDTO userDTO) {
+    private boolean validate(UserDTO userDTO) {
         String login = userDTO.getLogin();
 
         if (login == null || login.isBlank()) {
-            throw new IllegalArgumentException("Login not entered");
+            return false;
+//            throw new IllegalArgumentException("Login not entered");
         }
         if (dao.isExist(login)) {
-            throw new IllegalArgumentException("User with this login is already registered");
+            return false;
+            //throw new IllegalArgumentException("User with this login is already registered");
         }
         if (!login.matches("\\b([a-zA-Z\\d]+\\.?[a-zA-Z\\d]+)+")) {
-            throw new IllegalArgumentException("Wrong format of login");
+            return false;
+            //throw new IllegalArgumentException("Wrong format of login");
         }
         if (login.length() < 6) {
-            throw new IllegalArgumentException("login can not be less then 6 symbols");
+            return false;
+            //throw new IllegalArgumentException("login can not be less then 6 symbols");
         }
         if (login.length() > 30) {
-            throw new IllegalArgumentException("login cannot be longer then 30 symbols");
+            return false;
+            //throw new IllegalArgumentException("login cannot be longer then 30 symbols");
         }
 
         String password = userDTO.getPassword();
 
         if (password == null || password.isBlank()) {
-            throw new IllegalArgumentException("Password not entered");
+            return false;
+            //throw new IllegalArgumentException("Password not entered");
         }
         if (password.length() < 8) {
-            throw new IllegalArgumentException("Password can not be less then 8 symbols");
+            return false;
+            //throw new IllegalArgumentException("Password can not be less then 8 symbols");
         }
 
         String fullName = userDTO.getFullName();
 
         if (fullName == null || fullName.isBlank()) {
-            throw new IllegalArgumentException("Full name not entered");
+            return false;
+            //throw new IllegalArgumentException("Full name not entered");
         }
         if (userDTO.getFullName().length() <= 4) {
-            throw new IllegalArgumentException("full name cannot be less then 4 symbols");
+            return false;
+            //throw new IllegalArgumentException("full name cannot be less then 4 symbols");
         }
         if (!userDTO.getFullName().matches("(([A-Z])\\w+) (([A-Z])\\w+)")) {
-            throw new IllegalArgumentException("write correct full name");
+            return false;
+            //throw new IllegalArgumentException("write correct full name");
         }
 
         LocalDate birthdate = userDTO.getBirthdate();
@@ -76,10 +89,11 @@ public class RegistrationService implements IRegistrationService {
         if (birthdate.isAfter(LocalDate.now())
                 || birthdate.isEqual(LocalDate.now())
                 || birthdate.isBefore(LocalDate.now().minusYears(100))) {
-            throw new IllegalArgumentException("Invalid date of birth");
+            return false;
+            //throw new IllegalArgumentException("Invalid date of birth");
         }
 
-
+        return true;
     }
 
     @Override

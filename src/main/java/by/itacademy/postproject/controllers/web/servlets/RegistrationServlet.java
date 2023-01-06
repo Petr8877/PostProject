@@ -69,11 +69,16 @@ public class RegistrationServlet extends HttpServlet {
 
             LocalDate birthdate = parseDate(date);
 
-            registrationService.register(new UserDTO(login, password, fullName, birthdate));
+            if (registrationService.register(new UserDTO(login, password, fullName, birthdate))) {
 
-            String path = req.getContextPath() + "/ui" + "/userRegistered";
+                String path = req.getContextPath() + "/ui" + "/userRegistered";
 
-            resp.sendRedirect(path);
+                resp.sendRedirect(path);
+            } else {
+                String path = req.getContextPath() + "/ui" + "/userNotRegistered";
+
+                resp.sendRedirect(path);
+            }
 
         } catch (IllegalArgumentException exception) {
             writer.write("<p>" + exception.getMessage() + "</p>");

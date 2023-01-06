@@ -52,10 +52,18 @@ public class MessageServlet extends HttpServlet {
             }
 
             MessageDTO messageDTO = new MessageDTO(ActionSession.getParameterValue(req, "user").getLogin(), recipient, text);
-            service.sendMessage(messageDTO);
 
+            if (service.sendMessage(messageDTO)) {
 
-            writer.write("<p> Message sent </p>");
+                String path = req.getContextPath() + "/ui" + "/MessageSend";
+
+                resp.sendRedirect(path);
+            } else {
+                String path = req.getContextPath() + "/ui" + "/MessageDontSend";
+
+                resp.sendRedirect(path);
+            }
+            //writer.write("<p> Message sent </p>");
         } catch (IllegalArgumentException exception) {
             writer.write("<p>" + exception.getMessage() + "</p>");
         }
@@ -69,7 +77,7 @@ public class MessageServlet extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
 
-        try{
+        try {
             List<SavedMessageEntity> messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user").getLogin());
             messageList.forEach(s -> writer.write("<p>" + s + "</p>"));
         } catch (IllegalArgumentException e) {

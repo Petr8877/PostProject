@@ -6,7 +6,7 @@ import by.itacademy.postproject.dto.UserDTO;
 
 public interface IRegistrationService {
 
-    void register(UserDTO user);
+    boolean register(UserDTO user);
 
     boolean isExist(String login);
 
