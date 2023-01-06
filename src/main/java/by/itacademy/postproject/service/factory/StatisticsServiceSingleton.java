@@ -12,7 +12,8 @@ public class StatisticsServiceSingleton {
         if (instance == null) {
             synchronized (StatisticsService.class) {
                 if (instance == null) {
-                    instance = new StatisticsService(RegistrationServiceSingleton.getInstance());
+                    instance = new StatisticsService(RegistrationServiceSingleton.getInstance(),
+                            MessageServiceSingleton.getInstance());
                 }
             }
         }

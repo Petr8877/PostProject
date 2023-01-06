@@ -5,7 +5,6 @@ import by.itacademy.postproject.dto.MessageDTO;
 import by.itacademy.postproject.entity.SavedMessageEntity;
 import by.itacademy.postproject.service.api.IMessageService;
 import by.itacademy.postproject.service.api.IRegistrationService;
-import by.itacademy.postproject.service.api.IStatisticsService;
 
 import java.util.List;
 import java.util.Map;
@@ -13,12 +12,10 @@ import java.util.Map;
 public class MessageService implements IMessageService {
 
     private final IMessageDAO dao;
-    private final IStatisticsService statisticsService;
     private IRegistrationService registrationService;
 
-    public MessageService(IMessageDAO dao, IStatisticsService statisticsService, IRegistrationService registrationService) {
+    public MessageService(IMessageDAO dao, IRegistrationService registrationService) {
         this.dao = dao;
-        this.statisticsService = statisticsService;
         this.registrationService = registrationService;
     }
 
@@ -26,7 +23,6 @@ public class MessageService implements IMessageService {
     public void sendMessage(MessageDTO messageDTO) {
         validate(messageDTO);
         dao.save(new SavedMessageEntity(messageDTO));
-        statisticsService.addCountMessage();
     }
 
     @Override
@@ -36,11 +32,16 @@ public class MessageService implements IMessageService {
 
     @Override
     public List<SavedMessageEntity> getAllUserMessage(String login) {
-        List<SavedMessageEntity> userSendMessage = dao.getAllUserMessage(login);;
+        List<SavedMessageEntity> userSendMessage = dao.getAllUserMessage(login);
         if(userSendMessage == null) {
             throw new IllegalArgumentException("No message for this user");
         }
         return userSendMessage;
+    }
+
+    @Override
+    public Integer getCountAllMessage() {
+        return dao.getCountAllMessage();
     }
 
     private void validate(MessageDTO message) {

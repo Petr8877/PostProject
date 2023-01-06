@@ -12,4 +12,5 @@ public interface IMessageDAO {
     Map<String, List<SavedMessageEntity>> getMessage();
 
     List<SavedMessageEntity> getAllUserMessage(String login);
+    Integer getCountAllMessage();
 }

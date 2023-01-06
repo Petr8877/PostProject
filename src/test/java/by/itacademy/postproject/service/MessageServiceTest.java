@@ -19,8 +19,8 @@ public class MessageServiceTest {
     public void sendMessage(){
         MessageDAO dao = new MessageDAO();
         IRegistrationService registrationService = new RegistrationService(new RegisteredUsersDAO());
-        IStatisticsService statisticsService = new StatisticsService(registrationService);
-        IMessageService messageService = new MessageService(dao, statisticsService, registrationService);
+
+        IMessageService messageService = new MessageService(dao, registrationService);
 
         MessageDTO messageDTO = new MessageDTO("Lululu", "Lololo", "It's test");
 
@@ -36,8 +36,8 @@ public class MessageServiceTest {
         RegisteredUsersDAO daoReg = new RegisteredUsersDAO();
         MessageDAO daoMes = new MessageDAO();
         IRegistrationService registrationService = new RegistrationService(daoReg);
-        IStatisticsService statisticsService = new StatisticsService(registrationService);
-        IMessageService messageService = new MessageService(daoMes, statisticsService, registrationService);
+
+        IMessageService messageService = new MessageService(daoMes, registrationService);
 
         MessageDTO messageDTO = new MessageDTO("Lululu", null, "It's test");
 
@@ -52,8 +52,8 @@ public class MessageServiceTest {
         RegisteredUsersDAO daoReg = new RegisteredUsersDAO();
         MessageDAO daoMes = new MessageDAO();
         IRegistrationService registrationService = new RegistrationService(daoReg);
-        IStatisticsService statisticsService = new StatisticsService(registrationService);
-        IMessageService messageService = new MessageService(daoMes, statisticsService, registrationService);
+
+        IMessageService messageService = new MessageService(daoMes, registrationService);
 
         MessageDTO messageDTO = new MessageDTO("Lululu", "", "It's test");
 
@@ -68,8 +68,7 @@ public class MessageServiceTest {
         RegisteredUsersDAO daoReg = new RegisteredUsersDAO();
         MessageDAO daoMes = new MessageDAO();
         IRegistrationService registrationService = new RegistrationService(daoReg);
-        IStatisticsService statisticsService = new StatisticsService(registrationService);
-        IMessageService messageService = new MessageService(daoMes, statisticsService, registrationService);
+        IMessageService messageService = new MessageService(daoMes, registrationService);
 
         UserDTO user = new UserDTO("Annyyy","12345678", "Ann Ivanova", LocalDate.of(2000, 10, 10));
 
@@ -88,8 +87,7 @@ public class MessageServiceTest {
         RegisteredUsersDAO daoReg = new RegisteredUsersDAO();
         MessageDAO daoMes = new MessageDAO();
         IRegistrationService registrationService = new RegistrationService(daoReg);
-        IStatisticsService statisticsService = new StatisticsService(registrationService);
-        IMessageService messageService = new MessageService(daoMes, statisticsService, registrationService);
+        IMessageService messageService = new MessageService(daoMes, registrationService);
 
         UserDTO user = new UserDTO("Annyyy","12345678", "Ann Ivanova", LocalDate.of(2000, 10, 10));
 
@@ -109,8 +107,7 @@ public class MessageServiceTest {
         RegisteredUsersDAO daoReg = new RegisteredUsersDAO();
         MessageDAO daoMes = new MessageDAO();
         IRegistrationService registrationService = new RegistrationService(daoReg);
-        IStatisticsService statisticsService = new StatisticsService(registrationService);
-        IMessageService messageService = new MessageService(daoMes, statisticsService, registrationService);
+        IMessageService messageService = new MessageService(daoMes, registrationService);
 
         UserDTO user = new UserDTO("Annyyy","12345678", "Ann Ivanova", LocalDate.of(2000, 10, 10));
         registrationService.register(user);
@@ -125,8 +122,7 @@ public class MessageServiceTest {
         RegisteredUsersDAO daoReg = new RegisteredUsersDAO();
         MessageDAO daoMes = new MessageDAO();
         IRegistrationService registrationService = new RegistrationService(daoReg);
-        IStatisticsService statisticsService = new StatisticsService(registrationService);
-        IMessageService messageService = new MessageService(daoMes, statisticsService, registrationService);
+        IMessageService messageService = new MessageService(daoMes, registrationService);
 
         Throwable throwable = Assertions.assertThrows(IllegalArgumentException.class,
                 () -> messageService.getAllUserMessage("kiki"));
@@ -139,8 +135,7 @@ public class MessageServiceTest {
         RegisteredUsersDAO daoReg = new RegisteredUsersDAO();
         MessageDAO daoMes = new MessageDAO();
         IRegistrationService registrationService = new RegistrationService(daoReg);
-        IStatisticsService statisticsService = new StatisticsService(registrationService);
-        IMessageService messageService = new MessageService(daoMes, statisticsService, registrationService);
+        IMessageService messageService = new MessageService(daoMes, registrationService);
 
         UserDTO toWhom = new UserDTO("Annyyy","12345678", "Ann Ivanova", LocalDate.of(2000, 10, 10));
 

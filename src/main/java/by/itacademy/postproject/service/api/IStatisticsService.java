@@ -12,7 +12,7 @@ public interface IStatisticsService {
 
     void removeActiveUser();
 
-    void addCountMessage();
+    int getCountAllUser();
 
     StatisticsDTO getAllStatistics();
 }

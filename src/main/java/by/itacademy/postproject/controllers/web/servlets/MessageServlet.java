@@ -71,7 +71,7 @@ public class MessageServlet extends HttpServlet {
 
         try{
             List<SavedMessageEntity> messageList = service.getAllUserMessage(ActionSession.getParameterValue(req, "user").getLogin());
-            messageList.forEach(s -> writer.write("<p>" + s + "</p>"));
+            messageList.forEach(s -> writer.write("<p>" + s+ "</p>"));
         } catch (IllegalArgumentException e) {
             writer.write("<p>" + e.getMessage() + "</p>");
         }

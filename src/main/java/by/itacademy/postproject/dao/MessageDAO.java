@@ -27,4 +27,11 @@ public class MessageDAO implements IMessageDAO {
     public List<SavedMessageEntity> getAllUserMessage(String login) {
         return this.usersMessages.get(login);
     }
+    public Integer getCountAllMessage() {
+        int count = 0;
+        for (List<SavedMessageEntity> list:usersMessages.values()) {
+            count+=list.size();
+        }
+        return count;
+    }
 }
