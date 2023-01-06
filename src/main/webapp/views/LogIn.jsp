@@ -75,6 +75,9 @@ font-size: 18px;
 <input type="password" name="password" placeholder="Пароль"/>
 <br></br>
 <button type="submit" class="border-button"/>Войти</button>
+</br>
+          ${succed_auth}
+          ${error_login}
 </form>
 </div>
 </body>

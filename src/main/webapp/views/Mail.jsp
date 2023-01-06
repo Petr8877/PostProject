@@ -76,6 +76,11 @@ font-size: 18px;
 
   <input type="text" id="text" name="text"><br><br>
   <button type="submit" class="border-button">Отправить</button>
+        </br>
+        ${error_message}</br>
+        </br>
+        ${success_message}
+
 </form>
 </body>
 </html>

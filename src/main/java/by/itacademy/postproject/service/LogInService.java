@@ -21,7 +21,7 @@ public class LogInService implements ILogInService {
         }
 
         if (!registrationService.isExist(login)) {
-            throw new IllegalArgumentException("This login doesn't exist");
+            throw new IllegalArgumentException("Login and password not exist");
         }
 
         String password = log.getPassword();
@@ -31,7 +31,7 @@ public class LogInService implements ILogInService {
         }
 
         if (!registrationService.getUser(login).getUser().getPassword().equals(password)) {
-            throw new IllegalArgumentException("Wrong password entered");
+            throw new IllegalArgumentException("Login and password not exist");
         }
 
     }

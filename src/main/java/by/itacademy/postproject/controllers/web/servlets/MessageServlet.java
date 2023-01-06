@@ -46,18 +46,17 @@ public class MessageServlet extends HttpServlet {
             if (recipients == null) {
                 throw new IllegalArgumentException("Message recipient not entered");
             }
-
             if (texts == null) {
                 throw new IllegalArgumentException("No message to send to recipient");
             }
-
             MessageDTO messageDTO = new MessageDTO(ActionSession.getParameterValue(req, "user").getLogin(), recipient, text);
             service.sendMessage(messageDTO);
+            req.setAttribute("success_message", "message send");
+            req.getRequestDispatcher("/views/Mail.jsp").forward(req, resp);
 
-
-            writer.write("<p> Message sent </p>");
         } catch (IllegalArgumentException exception) {
-            writer.write("<p>" + exception.getMessage() + "</p>");
+            req.setAttribute("error_message", exception.getMessage());
+            req.getRequestDispatcher("/views/Mail.jsp").forward(req, resp);
         }
 
     }

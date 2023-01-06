@@ -69,12 +69,13 @@ public class RegistrationServlet extends HttpServlet {
             LocalDate birthdate = parseDate(date);
 
             registrationService.register(new UserDTO(login, password, fullName, birthdate));
-            writer.write("<p> User registered </p>");
+            req.setAttribute("succed_registration", "User registered");
+            req.getRequestDispatcher("/views/RegistrationPage.jsp").forward(req, resp);
 
-        } catch (IllegalArgumentException exception) {
-            writer.write("<p>" + exception.getMessage() + "</p>");
-        } catch (DateTimeParseException exception) {
-            writer.write("<p> Invalid date of birth format </p>");
+
+        } catch (IllegalArgumentException | DateTimeParseException exception) {
+            req.setAttribute("error_registration", exception.getMessage());
+            req.getRequestDispatcher("/views/RegistrationPage.jsp").forward(req, resp);
         }
     }
 

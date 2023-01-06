@@ -54,9 +54,12 @@ public class LogInServlet extends HttpServlet {
 
             ActionSession.saveSession(req, "user", userSessionDTO);
             writer.write("<p> Authorization is successful </p>");
+            req.setAttribute("succed_auth", "Authorization is successful");
+            req.getRequestDispatcher("/views/LogIn.jsp").forward(req, resp);
 
         } catch (IllegalArgumentException exception) {
-            writer.write("<p>" + exception.getMessage() + "</p>");
+            req.setAttribute("error_login", exception.getMessage());
+            req.getRequestDispatcher("/views/LogIn.jsp").forward(req, resp);
         }
     }
 

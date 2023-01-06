@@ -81,6 +81,9 @@ font-size: 18px;
       <input type="text" id="birthdate" name="birthdate" placeholder="ГГГГ-ММ-ДД"><br><br>
 
    <button type="submit" class="border-button">Отправить форму</button>
+          <br/>
+          ${error_registration}
+          ${succed_registration}
 </form>
 </body>
 </html>
