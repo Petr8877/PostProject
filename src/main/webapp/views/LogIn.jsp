@@ -7,8 +7,7 @@
 </head>
 
 <body bgcolor="#5F9EA0">
-
-<div style="text-align:center;">
+<div class="tab">
 <h1 class="logo">Страница авторизации</h1>
 <form method = "POST" action = ${path}>
 <input type="text" name="login" required="required" placeholder="Логин"/>
@@ -18,6 +17,5 @@
 <button type="submit" class="border-button"/>Войти</button>
 </form>
 </div>
-
 </body>
 </html>

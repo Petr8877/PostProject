@@ -87,7 +87,7 @@ font-size: 18px;
 <div class="bod">
 <div style="text-align:center;">
 <br><br>
-<a href="${pageContext.request.contextPath}/ui/" class="logo">ПОЧТОВИК</a><br><br>
+<a href="${pageContext.request.contextPath}/ui/" class="logo">ПОЧТОВИЧОК</a><br><br>
 </div>
 </body>
 </html>
